@@ -51,7 +51,7 @@ if (is.null(opt$api_key)) {
  opt$api_key <- Sys.getenv('LEANPUB_API_KEY')
   if (opt$api_key == "") {
   stop("Tried to obtain the API Key from Sys.getenv('LEANPUB_API_KEY') but it
-  was not set. Use Sys.setenv("LEANPUB_API_KEY" = "BLAHBLAHBLAH") to set it")
+  was not set. Use Sys.setenv('LEANPUB_API_KEY' = 'BLAHBLAHBLAH') to set it")
   }
 }
 

@@ -1,6 +1,7 @@
-# Contributing Guidelines for ITCR Course Template
+# Getting Started with this Leanpub course template repository
 
-This template includes all of the files that you need to get started converting your bookdown course that was set up from a ITCR_Course_Template_Bookdown to a Leanpub course with quizzes.
+This template includes all of the files that you need to get started converting your bookdown course that was set up from a [DaSL_Course_Template_Bookdown](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md) to a Leanpub course with quizzes.
+If you haven't created a _Bookdown repository from this template, you should go to that [template repository's getting started section](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md) and start there.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->

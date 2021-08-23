@@ -16,6 +16,13 @@ option_list <- list(
     help = "Path to a folder of Markua-formatted .md file quizzes. Default is to 
     look for a folder called 'quizzes' in the top of the repository.",
     metavar = "character"
+  ), 
+  make_option(
+    opt_str = c("-m", "--manuscript"), type = "character",
+    default = "manuscript" ,
+    help = "Path to the manuscript folder which Leanpub will use to publish. 
+    Default is to try 'manuscript' at the top of the repository",
+    metavar = "character"
   )
 )
 
@@ -49,8 +56,11 @@ run_all_quiz_checks <- function(file_path) {
 }
 
 ########## Book and book.txt checking
+# Declare manuscript file path
+opt$manuscript <- file.path(root_dir, opt$manuscript)
+
 # Check image and video links 
-leanbuild::leanpub_check("manuscript")
+leanbuild::leanpub_check(opt$manuscript)
 
 ########## Check references 
 

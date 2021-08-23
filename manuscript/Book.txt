@@ -1,8 +1,6 @@
 index.md
 01-intro.md
-quiz_ch1.md
 02-chapter_of_course.md
 03-test_cases.md
 04-figures.md
-about.md
-references.md
+About.md

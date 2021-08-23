@@ -1,0 +1,121 @@
+---
+title: "Chapter of course"
+output: html_document
+---
+
+
+```{r, include = FALSE}
+leanbuild::set_knitr_image_path()
+```
+
+## Learning Objectives
+
+This chapter will cover:  
+
+- {You can use https://www.bu.edu/cme/forms/RSS_forms/tips_for_writing_objectives.pdf to define some learning objectives here}
+- {Another learning objective}
+
+## Libraries
+
+For this chapter, we'll need the following packages attached:
+
+```{r}
+library(here)
+library(ggplot2)
+library(magrittr)
+```
+
+# Topic of Section
+
+Text Text
+
+## Subtopic
+
+Text Text
+
+### Code examples
+
+```{r}
+output_dir <- "code_output"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir)
+}
+```
+
+```{r}
+iris %>%
+  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
+  geom_point() +
+  theme_bw()
+```
+
+```{r}
+ggsave(file.path(output_dir, "test_ggplot2.png"))
+```
+
+### Image example
+
+```{r, fig.align='center', echo = FALSE, fig.alt= "Major point!! example image"}
+leanbuild::include_slide("https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit#slide=id.gcc4fbee202_0_141")
+```
+
+
+### Video examples
+
+
+```{r, fig.align="center", fig.alt = "video", echo=FALSE, out.width="100%"}
+knitr::include_url("https://www.youtube.com/embed/yiZQaE0q9BY")
+```
+
+```{r, fig.align="center", fig.alt = "video", echo=FALSE, out.width="100%"}
+knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
+```
+
+### Embedded files examples
+
+
+```{r, fig.align="center", echo=FALSE}
+knitr::include_url("https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf", height = "800px")
+```
+
+```{r, fig.align="center", echo=FALSE}
+knitr::include_url("https://widgets.figshare.com/articles/5427418/embed?show_title=1", height = "800px")
+```
+
+Example of including a website:
+```{r, fig.align="center", echo=FALSE}
+knitr::include_url("https://yihui.org", height = "800px")
+```
+
+Example of including an html file hosted on GitHub:
+
+```{r, fig.align="center", echo=FALSE}
+knitr::include_url("https://carriewright11.github.io/stringr_RLadies/index.html", height = "800px")
+```
+
+
+### Citation examples
+
+We can put citations at the end of a sentence like this [@bookdown2016].
+Or multiple citations [@bookdown2016, @rmarkdown2018].
+
+but they need a ; separator [@bookdown2016; @rmarkdown2018].
+
+but they need a ; separator [ \[@bookdown2016\](#bookdown2016); \[@rmarkdown2018\](#rmarkdown2018)].
+
+In text, we can put citations like this @bookdown2016.
+
+
+Here's a silly example which may mess up references.
+
+```{r}
+library(oro.nifti)
+img <- oro.nifti::nifti()
+img@.Data
+```
+
+## Print out session info
+
+```{r}
+devtools::session_info()
+```

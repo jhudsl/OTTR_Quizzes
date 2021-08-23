@@ -11,5 +11,9 @@ yml <- grep("\\.Rmd", yml, value = TRUE, ignore.case = TRUE)
 # Take out the nonsense
 yml <- gsub(",|\t| |\\[|\\]|:|rmd_files|\"", "", yml)
 
+if(!dir.exists("resources")){
+  dir.create("resources")
+}
+
 # Write the file
 writeLines(yml, file.path("resources", "rmd_list.txt"))

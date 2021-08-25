@@ -3,6 +3,8 @@
 This template repository includes all of the files that you need to get converting your Bookdown course that was set up from a [DaSL_Course_Template_Bookdown](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md) to a [Leanpub](https://leanpub.com/) course with quizzes.
 If you haven't created a _Bookdown repository from this template, you should go to that [template repository's getting started section](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md) and start there.
 
+<img src="https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=geb00d6af62_0_0" width="500" height="500"/>
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
@@ -21,6 +23,27 @@ If you haven't created a _Bookdown repository from this template, you should go 
 In the upper right of this screen, click `Use this template` and follow the steps to set up your course's GitHub repository.
 
 Name your repository fill in a short description (If this is an ITCR course, start the repo name with `ITCR_`).
+
+##### Set up branches
+
+*These settings are the same as we used in the Bookdown repository so we will need to set them up in the same way.
+
+Go to `Settings` > `Branches` and click `Add rule`.
+For `Branch name pattern`, put `main`.
+
+_Protect the main branch_:  
+Then check the box that says `Require pull request reviews before merging`.
+
+_Make sure branches are updated_:  
+- Check the box that says `Require status checks to pass before merging`.
+- Underneath this also check the box that says `Require branches to be up to date before merging`.
+
+_Use automatic spell and URL checks_:  
+After the first pull request, a couple of checks will automatically happen and then appear here in settings.
+Then, you can require these checks to pass before merging pull requests by returning here and selecting them - they are `url_check` and `style-n-check` they will check that the urls work and that the code is styled using the `stylr` package and that the spelling is correct using the spelling package respectively.
+See the [Github Actions section in the Bookdown repository](#github-actions) for more details on these.
+
+After setting up these new branch items, click `Create` and `Save changes`.
 
 ## Linking to your _Bookdown Github repository
 

@@ -1,35 +1,84 @@
 # Getting Started with this Leanpub course template repository
 
-This template includes all of the files that you need to get started converting your bookdown course that was set up from a [DaSL_Course_Template_Bookdown](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md) to a Leanpub course with quizzes.
+This template repository includes all of the files that you need to get converting your Bookdown course that was set up from a [DaSL_Course_Template_Bookdown](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md) to a [Leanpub](https://leanpub.com/) course with quizzes.
 If you haven't created a _Bookdown repository from this template, you should go to that [template repository's getting started section](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md) and start there.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [Making your course ready for Leanpub](#making-your-course-ready-for-leanpub)
-- [Setting up Docker image](#setting-up-docker-image)
-  - [Starting a new Docker image](#starting-a-new-docker-image)
+- [Setting up your Leanpub Github repository](#setting-up-your-leanpub-github-repository)
+- [Linking to your _Bookdown Github repository](#linking-to-your-_bookdown-github-repository)
+  - [Setting up quizzes](#setting-up-quizzes)
 - [Leanpub rendering](#leanpub-rendering)
   - [Hosting your course on Leanpub](#hosting-your-course-on-leanpub)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Making your course ready for Leanpub
+## Setting up your Leanpub Github repository
 
-TODO: Add more details here about setting up repositories.
+In the upper right of this screen, click `Use this template` and follow the steps to set up your course's GitHub repository.
+
+Name your repository fill in a short description (If this is an ITCR course, start the repo name with `ITCR_`).
+
+_Trigger the workflow to set up the Github issues that you can use to guide your set up of this course_:   
+- Go to `Actions` > under `Workflows` click on `Issue Filer`.
+- Where it says `This workflow has a workflow_dispatch event trigger.` click `Run workflow` and then click the green button that says `Run workflow`.
+- Now if you go to `Issues` you will see issues filed that you can follow to set up the new course!
+
+Now you are ready to make quizzes!
+
+## Linking to your _Bookdown Github repository
+
+In order to link your _Leanpub and _Bookdown repositories (so you only have to edit material in one place), you will need to do a little set up with a Github action in your course's _Bookdown repository.
+
+In your _Bookdown repository, navigate to your github actions files, located in the `.gihub/workflows/` folder and open your `transfer-rendered-files.yml` file to edit.
+
+It will look like [this](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/transfer-rendered-files.yml)
+
+In this file, you will see:
+```
+jobs:
+  file-bookdown-pr:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code from Leanpub repo
+        uses: actions/checkout@v2
+        with:
+          repository: jhudsl/DaSL_Course_Template_Leanpub
+```
+
+Change the `repository:` line to have the name of this new Leanpub repository.
+Note if you haven't set a [GIT_TOKEN git secret](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#set-up-github-secrets), you will need to do that by following the instructions linked in the _Bookdown repository's getting_started.md.
+
+Optionally/Recommended -- if you would like to have PRs filed _automatically_ when you make changes to your _Bookdown repository, you will need to uncomment this section at the top of the file:
+```
+  workflow_dispatch:
+  # Only run after the render finishes running
+  # workflow_run:
+  #  workflows: [ "Build, Render, and Push" ]
+  #  branches: [ main ]
+  #  types:
+  #    - completed
+```
+If you choose not to have this run automatically you will need to [manually trigger this workflow](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow) when you want your files to be copied from the Bookdown repository to the Leanpub repository. 
+
+After you merge these changes you will be able to easily copy over the Leanpub-needed files from your Bookdown repository as you make content updates/changes/adds.
+
+_Note that any content changes to non-quiz material needs to be done your course's Bookdown repository!
+Do NOT change them here, in your Leanpub repository, otherwise your Bookdown course will not be updated._
 
 ### Setting up quizzes
 
-TODO: Describe quiz setup and format.
+See and copy this [template quiz](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/quizzes/quiz_ch1.md) to get started.
+All quizzes need to be written in the Markua format. Refer to their [documentation](https://leanpub.com/markua/read#leanpub-auto-quizzes-and-exercises) (but note that it is sometimes vague or out of date).
+The example question types in the template are ones that are verified to work.
 
-## Leanpub rendering
+After you add each new quiz to the `quizzes/` directory, it's filename needs to be added in its respective spot in the `Book.txt` file; this ensures its incorporated by Leanpub in the correct order.
 
-We also include the necessary files to allow you to get your course ready for publication on [Leanpub](https://leanpub.com/).
-These are located in the `manuscript` directory. When you are happy with your book using bookdown, then you just need to follow a few steps to copy the necessary files from your `docs` directory into the `manuscript` directory.
-The `docs` directory is auto-generated by the `bookdown` package.  You need to copy time `images` directory as well as the `.md` files.
-
-Finally you need to modify the `Book.txt` file in the `manuscript` directory to include the `.md` files that you wish in the order that you would like. We have also included a quiz example.
+You need to modify the `Book.txt` file in the `manuscript` directory to include the `.md` files that you wish in the order that you would like. We have also included a quiz example.
 If you wanted two quizzes (one called `quiz_1.md` and one called `quiz_2.md`) you could duplicate and modify `quiz_1.md` for your needs and then you could make the `Book.txt` file look like this (assuming you created a chapter called `"03-chapter_of_course.Rmd"` and you wanted quiz_1 to be after `02-chapter-of_course` and quiz_2 to be after `03_chapter_of_course`:  
 
 ```
@@ -40,30 +89,38 @@ quiz_1.md
 quiz_2.md  
 about.md  
 ```
-
 Note that any `.md` files with an `#` in front of the name in the `Book.txt` file will be ignored by Leanpub. We have included an example of this in the `Book.txt` file.  
+
+## Leanpub rendering
+
+For convenience purposes the leanbuild package can do most of the formatting of links and etc for you (so long as you followed the formatting prescribed by the [getting_started.md document in the Bookdown Course Template repository](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#setting-up-images-and-graphics).
+
+Github actions in this repository will attempt to do the bookdown to leanpub conversions for you by running `leanbuild::bookdown_to_leanpub()` function at the top of the repository.
+You can also run this command manually if you wish.
+
+If you encounter issues with the leanbuild package, please file an issue on its [Github repository](https://github.com/jhudsl/leanbuild/issues).
 
 ### Hosting your course on Leanpub  
 
-To then host your course on Leanpub follow these steps:  
+To host your course on Leanpub follow these steps:  
 
-1) Make a Leanpub account here: https://leanpub.com/    
+1) Make a Leanpub account here: https://leanpub.com/ if you don't already have one.   
 
 2) Start a course  
- - click on the 3 line menu button  
- - click the author tab on the far left
- - click Courses
- - click the text that says `create a new course`
- - fill out all the necessary information
- - select using Git and GitHub (if you work with us at JHU there is a different protocol)
+ - Click on the 3 line menu button  
+ - Click the author tab on the far left
+ - Click Courses
+ - Click the text that says `create a new course`
+ - Fill out all the necessary information
+ - Select using Git and GitHub (if you work with us at JHU there is a different protocol and additional settings you need to set which you should follow - [see this document](https://docs.google.com/document/d/18UQicXwf8d25ayKGF2BrinvRgB_R2ToVn5EDOUcxyoc/edit?usp=sharing) )
  - press the `add to plan` button
 
  3) Preview a new version
- - click on the 3 line menu button
- - click the author tab on the far left
- - click Courses
- - click on your course name/icon
- - click "Preview New Version"
- - click `Create Preview` button
+ - Click on the 3 line menu button
+ - Click the author tab on the far left
+ - Click Courses
+ - Click on your course name/icon
+ - Click "Preview New Version"
+ - Click `Create Preview` button
 
- 4) Once you are ready and you like your course, you can click the "Publish New Version" instead of "Preview New Version"
+ 4) Once you are ready and you like your course, you can click the "Publish New Version" instead of "Preview New Version".

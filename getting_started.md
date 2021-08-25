@@ -12,6 +12,7 @@ If you haven't created a _Bookdown repository from this template, you should go 
   - [Setting up quizzes](#setting-up-quizzes)
 - [Leanpub rendering](#leanpub-rendering)
   - [Hosting your course on Leanpub](#hosting-your-course-on-leanpub)
+  - [Setting up this repository checklist:](#setting-up-this-repository-checklist)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -20,13 +21,6 @@ If you haven't created a _Bookdown repository from this template, you should go 
 In the upper right of this screen, click `Use this template` and follow the steps to set up your course's GitHub repository.
 
 Name your repository fill in a short description (If this is an ITCR course, start the repo name with `ITCR_`).
-
-_Trigger the workflow to set up the Github issues that you can use to guide your set up of this course_:   
-- Go to `Actions` > under `Workflows` click on `Issue Filer`.
-- Where it says `This workflow has a workflow_dispatch event trigger.` click `Run workflow` and then click the green button that says `Run workflow`.
-- Now if you go to `Issues` you will see issues filed that you can follow to set up the new course!
-
-Now you are ready to make quizzes!
 
 ## Linking to your _Bookdown Github repository
 
@@ -63,9 +57,9 @@ Optionally/Recommended -- if you would like to have PRs filed _automatically_ wh
   #  types:
   #    - completed
 ```
-If you choose not to have this run automatically you will need to [manually trigger this workflow](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow) when you want your files to be copied from the Bookdown repository to the Leanpub repository. 
+If you choose not to have this run automatically you will need to [manually trigger this workflow](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow) when you want your files to be copied from the Bookdown repository to the Leanpub repository.
 
-After you merge these changes you will be able to easily copy over the Leanpub-needed files from your Bookdown repository as you make content updates/changes/adds.
+After you merge these changes in the `main` branch you will be able to easily copy over the Leanpub-needed files from your Bookdown repository as you make content updates/changes/adds.
 
 _Note that any content changes to non-quiz material needs to be done your course's Bookdown repository!
 Do NOT change them here, in your Leanpub repository, otherwise your Bookdown course will not be updated._
@@ -124,3 +118,14 @@ To host your course on Leanpub follow these steps:
  - Click `Create Preview` button
 
  4) Once you are ready and you like your course, you can click the "Publish New Version" instead of "Preview New Version".
+
+### Setting up this repository checklist:
+
+ - [ ] `main` branch has been set up:
+   - [ ] `Require pull request reviews before merging` box is checked.
+   - [ ] `Require status checks to pass before merging` box is checked.
+     - [ ] Underneath that `Require branches to be up to date before merging` box is checked.
+
+ - [ ] [This course's _Bookdown repository has been linked in the github actions](./getting_started.md#linking-to-your-_bookdown-github-repository)
+
+ - [ ] [This course's Leanpub has been set up](./getting_started.md#hosting-your-course-on-leanpub)

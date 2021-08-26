@@ -79,10 +79,10 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 
 
 {height: "400px", width: "100%", align: "middle" type: "video" poster: "http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg"}
-[Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=yiZQaE0q9BY).
+![Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=yiZQaE0q9BY).
 
 {height: "400px", width: "100%", align: "middle" type: "video" poster: "http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg"}
-[Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=VOCYL-FNbr0).
+![Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=VOCYL-FNbr0).
 
 ### Embedded files examples
 

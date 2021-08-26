@@ -78,8 +78,8 @@ knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
 knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
 ```
 
-{height: "400px", width: "672", align: "middle"}
-[Check out this link](http://www.youtube.com/embed/9bZkp7q19f0?rel=0).
+{height: "400px", width: "672", align: "middle" type: "video" poster: "http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg"}
+[Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=9bZkp7q19f0?rel=0).
 
 ![Introducing Markua](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
 

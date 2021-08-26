@@ -1,0 +1,16 @@
+# Candace Savonen Aug 2021
+# For info on how to update this file see: https://github.com/marketplace/actions/repo-file-sync-action#%EF%B8%8F-sync-configuration
+
+group:
+  # Repositories to recieve changes
+  repos: |
+    jhudsl/ITCR_Documentation_and_Usability_Leanpub
+  # Files which should be updated
+  files:
+  - .github/workflows/render-leanpub.yml
+  - .github/workflows/sp-check.yml
+  - .github/workflows/url-checker.yml
+  - .github/workflows/ISSUE_TEMPLATES/issue_template.md
+  - .github/workflows/PULL_REQUEST_TEMPLATE.md
+  - scripts/*
+  - getting_started.md

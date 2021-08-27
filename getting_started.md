@@ -10,7 +10,9 @@ If you haven't created a _Bookdown repository from this template, you should go 
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Setting up your Leanpub Github repository](#setting-up-your-leanpub-github-repository)
+      - [Set up branches](#set-up-branches)
 - [Linking to your _Bookdown Github repository](#linking-to-your-_bookdown-github-repository)
+  - [Receiving automatic mechanic updates from the original template](#receiving-automatic-mechanic-updates-from-the-original-template)
   - [Setting up quizzes](#setting-up-quizzes)
 - [Leanpub rendering](#leanpub-rendering)
   - [Hosting your course on Leanpub](#hosting-your-course-on-leanpub)
@@ -40,7 +42,7 @@ _Make sure branches are updated_:
 
 _Use automatic spell and URL checks_:  
 After the first pull request, a couple of checks will automatically happen and then appear here in settings.
-Then, you can require these checks to pass before merging pull requests by returning here and selecting them - they are `url_check` and `style-n-check` they will check that the urls work and that the code is styled using the `stylr` package and that the spelling is correct using the spelling package respectively.
+Then, you can require these checks to pass before merging pull requests by returning here and selecting them - they are `url_check` and `sp-check` they will check that the urls work and that the quizzes do not have spelling errors.
 See the [Github Actions section in the Bookdown repository](#github-actions) for more details on these.
 
 After setting up these new branch items, click `Create` and `Save changes`.
@@ -68,9 +70,10 @@ jobs:
 ```
 
 Change the `repository:` line to have the name of this new Leanpub repository.
-Note if you haven't set a [GIT_TOKEN git secret](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#set-up-github-secrets), you will need to do that by following the instructions linked in the _Bookdown repository's getting_started.md.
+Note if you haven't set a [GIT_TOKEN git secret](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#set-up-github-secrets) and you are not a part of `jhudsl` organization, you will need to set that by following the instructions linked in the _Bookdown repository's getting_started.md.
 
 Optionally/Recommended -- if you would like to have PRs filed _automatically_ when you make changes to your _Bookdown repository, you will need to uncomment this section at the top of the file:
+
 ```
   workflow_dispatch:
   # Only run after the render finishes running
@@ -86,6 +89,15 @@ After you merge these changes in the `main` branch you will be able to easily co
 
 _Note that any content changes to non-quiz material needs to be done your course's Bookdown repository!
 Do NOT change them here, in your Leanpub repository, otherwise your Bookdown course will not be updated._
+
+### Receiving automatic mechanic updates from the original template
+
+* Note that this is separate from the `_Bookdown` template repository's updates and needs to be set up separately. 
+When updates are made to files that aren't specific to the course content but instead run checks and other processes in the original repository, PRs are filed automatically to any downstream repositories made from this template.
+
+To enroll in these automatic update PRs, the new course's repository name will need to be added to [this file in the original template](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/.github/sync.yml) where it says `#NEW REPO HERE#`.
+File a pull request to make this change.
+If the your new course doesn't need some of the functionality of these files or you find the automatic you can feel free to use [this guide](https://github.com/marketplace/actions/repo-file-sync-action#sync-the-same-files-to-multiple-repositories) to tailor which files you want updates for.
 
 ### Setting up quizzes
 

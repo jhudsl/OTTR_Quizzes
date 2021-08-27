@@ -5,6 +5,7 @@ group:
   # Repositories to receive changes
   repos: |
     jhudsl/ITCR_Documentation_and_Usability_Leanpub
+#ADD NEW REPO HERE following the format above#
   # Files which should be updated
   files:
   - .github/workflows/render-leanpub.yml

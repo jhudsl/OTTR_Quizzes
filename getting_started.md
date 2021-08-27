@@ -10,7 +10,9 @@ If you haven't created a _Bookdown repository from this template, you should go 
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Setting up your Leanpub Github repository](#setting-up-your-leanpub-github-repository)
+      - [Set up branches](#set-up-branches)
 - [Linking to your _Bookdown Github repository](#linking-to-your-_bookdown-github-repository)
+  - [Receiving automatic mechanic updates from the original template](#receiving-automatic-mechanic-updates-from-the-original-template)
   - [Setting up quizzes](#setting-up-quizzes)
 - [Leanpub rendering](#leanpub-rendering)
   - [Hosting your course on Leanpub](#hosting-your-course-on-leanpub)
@@ -88,13 +90,14 @@ After you merge these changes in the `main` branch you will be able to easily co
 _Note that any content changes to non-quiz material needs to be done your course's Bookdown repository!
 Do NOT change them here, in your Leanpub repository, otherwise your Bookdown course will not be updated._
 
-### Receiving mechanic updates from the original template
+### Receiving automatic mechanic updates from the original template
 
-When updates are made to files that aren't specific to the course content but instead run checks and other processes in the original repository, PRs are filed automatically to any downstream respositories made from this template.
+* Note that this is separate from the `_Bookdown` template repository's updates and needs to be set up separately. 
+When updates are made to files that aren't specific to the course content but instead run checks and other processes in the original repository, PRs are filed automatically to any downstream repositories made from this template.
 
-To enroll in these automatic update PRs, the new course's repository name will need to be added to [this file in the original template](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/sync.yml) where it says `#NEW REPO HERE#`.
+To enroll in these automatic update PRs, the new course's repository name will need to be added to [this file in the original template](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/.github/sync.yml) where it says `#NEW REPO HERE#`.
 File a pull request to make this change.
-If the your new course doesn't need some of the functionality of these files or you find the automatic you can feel free to use [this guide](https://github.com/marketplace/actions/repo-file-sync-action#sync-the-same-files-to-multiple-repositories) to tailor which files you want updates for. 
+If the your new course doesn't need some of the functionality of these files or you find the automatic you can feel free to use [this guide](https://github.com/marketplace/actions/repo-file-sync-action#sync-the-same-files-to-multiple-repositories) to tailor which files you want updates for.
 
 ### Setting up quizzes
 

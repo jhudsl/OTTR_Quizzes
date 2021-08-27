@@ -27,7 +27,7 @@ jobs:
           # get the full repo
           fetch-depth: 0
           # use github PAT
-          token: ${{ secrets.GIT_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
 
 #      # Run leanbuild checks
 #      - name: Run leanbuild checks

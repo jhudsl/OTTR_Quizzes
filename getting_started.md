@@ -70,7 +70,7 @@ jobs:
 ```
 
 Change the `repository:` line to have the name of this new Leanpub repository.
-Note if you haven't set a [GIT_TOKEN git secret](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#set-up-github-secrets) and you are not a part of `jhudsl` organization, you will need to set that by following the instructions linked in the _Bookdown repository's getting_started.md.
+Note if you haven't set a [GH_PAT git secret](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#set-up-github-secrets) and you are not a part of `jhudsl` organization, you will need to set that by following the instructions linked in the _Bookdown repository's getting_started.md.
 
 Optionally/Recommended -- if you would like to have PRs filed _automatically_ when you make changes to your _Bookdown repository, you will need to uncomment this section at the top of the file:
 

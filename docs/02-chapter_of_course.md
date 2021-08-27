@@ -69,8 +69,7 @@ iris %>%
   theme_bw()
 ```
 
-{width: "672", align: "middle",}
-![](resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png).
+<img src="resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 You can also save these plots to file: 
 
@@ -87,13 +86,11 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 
 How to include a Google slide. It's simplest to use the `leanbuild` package: 
 
-{alt: "Major point!! example image", width: "100%", align: "middle",}
-![](resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png).
+<img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
 
 But if you have the slide or some other image locally downloaded you can also use html like this: 
 
-{alt: "Major point!! example image", width: "100%", align: "middle",}
-![](resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png).
+<img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
 
 ### Video examples
 
@@ -104,20 +101,17 @@ You can use `knitr::include_url()` like this:
 knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
 ```
 
-{height: "400px", width: "672", align: "middle", type: "video", poster: "http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg",}
-![Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=VOCYL-FNbr0).
+<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
 OR this works: 
 
-{height: "400px", width: "672", align: "middle", type: "video", poster: "http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg",}
-![Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=VOCYL-FNbr0).
+<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
 ### Links to files
 
 This works: 
 
-{height: "800px", width: "672", align: "middle",}
-[Check out this link](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf).
+<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="672" height="800px"></iframe>
 
 Or this: 
 
@@ -125,8 +119,7 @@ Or this:
 
 Or this: 
 
-{height: "800px", width: "672", align: "middle",}
-[Check out this link](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf).
+<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="672" height="800px"></iframe>
 
 ### Links to websites
 
@@ -139,8 +132,7 @@ This works:
 knitr::include_url("https://yihui.org")
 ```
 
-{height: "400px", width: "672", align: "middle",}
-[Check out this link](https://yihui.org).
+<iframe src="https://yihui.org" width="672" height="400px"></iframe>
 
 OR this:
 
@@ -148,17 +140,16 @@ OR this:
 
 OR this: 
 
-{height: "400px", width: "672", align: "middle",}
-[Check out this link](https://yihui.org).
+<iframe src="https://yihui.org" width="672" height="400px"></iframe>
 
 ### Citation examples
 
-We can put citations at the end of a sentence like this (Xie 2016).
-Or multiple citations Xie, Allaire, and Grolemund (2018).
+We can put citations at the end of a sentence like this [@bookdown2016].
+Or multiple citations [@bookdown2016, @rmarkdown2018].
 
-but they need a ; separator (Xie 2016; Xie, Allaire, and Grolemund 2018).
+but they need a ; separator [@bookdown2016; @rmarkdown2018].
 
-In text, we can put citations like this Xie (2016).
+In text, we can put citations like this @bookdown2016.
 
 ## Print out session info
 
@@ -339,12 +330,3 @@ devtools::session_info()
 ## [1] /usr/local/lib/R/site-library
 ## [2] /usr/local/lib/R/library
 ```
-*Please provide any feedback with [this form!](https://forms.gle/hc8Xt3Y2Znjb6M4Y7) We appreciate your thoughts.*
-
-## References
-Xie, Yihui. 2016. *Bookdown: Authoring Books and Technical Documents with R Markdown*. Boca Raton, Florida: Chapman; Hall/CRC. <https://github.com/rstudio/bookdown>.
-
-
-Xie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. *R Markdown: The Definitive Guide*. Boca Raton, Florida: Chapman; Hall/CRC. <https://bookdown.org/yihui/rmarkdown>.
-
-

@@ -1,0 +1,47 @@
+# Code adapted from https://github.com/JetBrains/intellij-platform-plugin-template/blob/deb171483598ee8a5d7621154db880e87b4db4ef/.github/workflows/template-cleanup.yml
+# by Candace Savonen for this repository.
+
+name: Starting a new course
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  # Run cleaning process only if workflow is triggered by not being in the Leanpub template anymore
+  template-cleanup:
+    name: Template Cleanup
+    runs-on: ubuntu-latest
+    if: github.event.repository.name != 'DaSL_Course_Template_Leanpub'
+    steps:
+
+      # Check out current repository
+      - name: Fetch current branch
+        uses: actions/checkout@v2
+
+##### Delete Template-specific files that aren't needed for new courses
+
+      # Cleanup Template-specific bits
+      - name: Cleanup
+        run: |
+          # Cleanup
+          rm -rf \
+            .github/workflows/downstream-mechanics-updates.yml \
+            .github/sync.yml \
+            .github/workflows/starting-course.yml
+
+      # Commit modified files
+      - name: Commit deleted files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Template cleanup"
+
+      # Push changes
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: main
+          github_token: ${{ secrets.GH_PAT }}

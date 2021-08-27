@@ -92,7 +92,7 @@ Do NOT change them here, in your Leanpub repository, otherwise your Bookdown cou
 
 ### Receiving automatic mechanic updates from the original template
 
-* Note that this is separate from the `_Bookdown` template repository's updates and needs to be set up separately. 
+* Note that this is separate from the `_Bookdown` template repository's updates and needs to be set up separately.
 When updates are made to files that aren't specific to the course content but instead run checks and other processes in the original repository, PRs are filed automatically to any downstream repositories made from this template.
 
 To enroll in these automatic update PRs, the new course's repository name will need to be added to [this file in the original template](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/.github/sync.yml) where it says `#NEW REPO HERE#`.
@@ -164,3 +164,5 @@ To host your course on Leanpub follow these steps:
  - [ ] [This course's _Bookdown repository has been linked in the github actions](./getting_started.md#linking-to-your-_bookdown-github-repository)
 
  - [ ] [This course's Leanpub has been set up](./getting_started.md#hosting-your-course-on-leanpub)
+
+- [ ] This repo has been enrolled in [automatic updates from the original template](#receiving-automatic-mechanic-updates-from-the-original-template).

@@ -1,0 +1,185 @@
+# MULTIPLE CHOICE QUESTION: SINGLE CORRECT ANSWER, WITH NO FEEDBACK OR SHUFFLE
+
+- typeName: multipleChoice
+  prompt: What color is a banana?
+  options:
+    - answer: yellow
+      isCorrect: true
+    - answer: blue
+      isCorrect: false
+    - answer: pink
+      isCorrect: false
+
+
+# MULTIPLE CHOICE QUESTION INSIDE A QUESTION BANK: DIFFICULTY LEVEL, QUESTION CATEGORY, SINGLE CORRECT ANSWER, WITH NO FEEDBACK OR SHUFFLE
+
+- typeName: multipleChoice
+  prompt: What color is a banana?
+  difficultyLevel: EASY # optionally you can assign difficulty levels in a question bank to use as selection criteria in question blocks. Difficulty levels in assessment questions will be ignored. There are three possible values: EASY, MEDIUM and HARD.
+  questionCategory: fruits # optionally you can assign question categories in a question bank to use as selection criteria in question blocks. Question categories in assessment questions will be ignored.
+  options:
+    - answer: yellow
+      isCorrect: true
+    - answer: blue
+      isCorrect: false
+    - answer: pink
+      isCorrect: false
+
+
+# MULTIPLE CHOICE QUESTION: SINGLE CORRECT ANSWER, WITH ITEM-LEVEL FEEDBACK, SHUFFLE, AND PARTIAL-CREDIT
+
+- typeName: multipleChoice
+  prompt: What color is the sky?
+  shuffleOptions: true # you only need this if you want to shuffle options. It is disabled by default.
+  allowPartialScoring: true # you only need this if you want to enable partial credit. It is disabled by default.
+  options:
+    - answer: Blue
+      isCorrect: true
+      feedback: That's correct! The sky is blue.
+      _id: CORRECT_ID # When you download a .yml file from the quiz editor, you'll see auto-generated
+                      # fields such as '_id' that begin with an underscore. These are for tracking only,
+                      # and help Coursera connect material from separate uploads. Do not add these yourself,
+                      # but keep them as-is to modify questions that you have downloaded.
+    - answer: Green
+      isCorrect: false
+      feedback: The sky isn't green. Review Week 1 to learn more.
+      _id: questionA.optionB
+
+
+# MULTIPLE CHOICE QUESTION: SINGLE CORRECT ANSWER, WITH ITEM-LEVEL FEEDBACK, SHUFFLE, AND VARIATIONS
+
+- variations:
+    - typeName: multipleChoice
+      prompt: What's the capital of Canada?
+      shuffleOptions: true
+      options:
+        - answer: Ottawa
+          isCorrect: true
+          feedback: That's correct! Ottawa is the capital of Canada.
+        - answer: Toronto
+          isCorrect: false
+          feedback: Toronto isn't the capital of Canada; it's the capital of Ontario.
+    - typeName: multipleChoice
+      prompt: What's the capital of Italy?
+      shuffleOptions: true
+      options:
+        - answer: Rome
+          isCorrect: true
+          feedback: That's correct! Rome is the capital of Italy.
+        - answer: Venice
+          isCorrect: false
+          feedback: Though Venice is a popular tourist destination, it isn't the capital of Italy.
+    - typeName: text
+      prompt: What's the capital of the United States
+      defaultFeedback: Not quite. Review Week 3 to learn more.
+      answers:
+        - answer: Washington
+          isCorrect: true
+          feedback: That's correct! Washington is the capital of the United States.
+
+
+# CHECKBOX QUESTION: MULTIPLE CORRECT ANSWERS, WITH SOME ITEM-LEVEL FEEDBACK AND NO SHUFFLE
+
+- typeName: checkbox
+  prompt: Which of these modes of transportation have more than 2 wheels? Check all that apply.
+  shuffleOptions: false
+  options:
+  - answer: unicycle
+    isCorrect: false
+  - answer: bicycle
+    isCorrect: false
+    feedback: A bicycle has exactly 2 wheels.
+  - answer: tricycle
+    isCorrect: true
+  - answer: car
+    isCorrect: true
+  - answer: none of the above
+    isCorrect: false
+
+
+# NUMERIC: MULTIPLE CORRECT ANSWER, WITH DEFAULT FEEDBACK, ITEM-LEVEL FEEDBACK, RANGE OPTION, AND VALUE OPTION
+
+- typeName: numeric
+  prompt: How many planets are in our solar system?
+  defaultFeedback: That's not quite right. Review Lecture 7 to learn more!
+  answers:
+  - range: '[-1, 8)'
+    isCorrect: false
+    feedback: You're forgetting some planets - that's a little too low.
+  - value: 8
+    isCorrect: true
+    feedback: That's correct as of 2006, when Pluto was officially relegated to the status of dwarf planet.
+  - value: 9
+    isCorrect: true
+    feedback: This was correct pre-2006, and many today still consider Pluto a planet in popular culture.
+
+
+# MATH EXPRESSION: SINGLE CORRECT ANSWER, WITH DEFAULT FEEDBACK AND ITEM-LEVEL FEEDBACK
+
+- typeName: mathExpression
+  prompt: Which of these expressions is equivalent to x+y, where x=2 and y=2?
+  defaultFeedback: Review Week 2 for an explanation of multiplication.
+  answers:
+  - answer: x*y
+    isCorrect: true
+    feedback: That's correct!
+  - answer: x*x*y
+    isCorrect: false
+    feedback: That's incorrect.
+
+
+# TEXT QUESTION: SINGLE CORRECT ANSWER, WITH DEFAULT FEEDBACK AND ITEM-LEVEL FEEDBACK
+
+- typeName: text
+  prompt: Who was the first president of the United States?
+  defaultFeedback: Not quite. Review Week 5 to learn more.
+  answers:
+    - answer: George Washington
+      isCorrect: true
+      feedback: That's correct! George Washington was predient of the United States from 1789-1797.
+
+
+# REGEX QUESTION: SINGLE CORRECT ANSWER, WITH DEFAULT FEEDBACK AND ITEM-LEVEL FEEDBACK
+
+- typeName: regex
+  prompt: What is a group of cats called?
+  defaultFeedback: Not quite. Review Week 3 to learn more.
+  answers:
+    - pattern: '[cC]lowder|[gG]laring'
+      isCorrect: true
+      feedback: That's correct! A group of cats is called a clowder or a glaring.
+
+
+# REFLECTIVE MULTIPLE CHOICE QUESTION: SINGLE ANSWER REQUIRED, ANY ANSWER CORRECT, ITEM-LEVEL FEEDBACK, SHUFFLE
+
+- typeName: multipleChoiceReflect
+  prompt: Have you enjoyed this course so far?
+  shuffleOptions: false
+  defaultFeedback: You did not choose an option.
+  answers: 
+    - answer: Yes, a lot!
+      feedback: That’s great to hear :)
+    - answer: No, not yet.
+      feedback: Sorry to hear that. Please reach out to the course staff to share your feedback about how we could improve this course.
+
+
+# REFLECTIVE CHECKBOX QUESTION: NO REQUIRED ANSWER, ALL CORRECT ANSWERS, ITEM-LEVEL FEEDBACK, SHUFFLE
+
+- typeName: checkboxReflect
+  prompt: What do you think about this course so far?
+  shuffleOptions: false
+  answers: 
+    - answer: It teaches many good concepts.
+      feedback: That’s great to hear :)
+    - answer: It lacks certain topics that would be beneficial.
+      feedback: We're working on it! Please reach out to the course staff and share your ideas.
+    - answer: The assignments are too easy.
+      feedback: Challenge accepted!
+
+
+# REFLECTIVE TEXT QUESTION: ANY ANSWER CORRECT, WITH DEFAULT FEEDBACK
+
+- typeName: textReflect
+  prompt: Why did you enroll in this course? What goals do you have that this course can help you with?
+  defaultFeedback: Thank you for reflecting on your goals for taking this course!
+

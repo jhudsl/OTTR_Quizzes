@@ -1,11 +1,8 @@
 # Need here and R.utils
-# For testing use tx_i  <- readLines(here("quizzes", "quiz_ch1.md"))
+# For testing use quiz_lines  <- readLines(here::here("quizzes", "quiz_ch1.md"))
 
 # This is functionalized but running like script for now till we decide where to put this:
 # run by  pasting `Rscript scripts/coursera_quiz_conversion.R` in the terminal
-
-library(R.utils)
-
 
 coursera_quizzes <- function(path= here::here("quizzes"), # we might want to update to manuscript
          verbose = TRUE) {
@@ -18,61 +15,73 @@ coursera_quizzes <- function(path= here::here("quizzes"), # we might want to upd
     warning("You need quiz files in your specified path dir")
   }
   print(leanpub_quizzes)
-  
-  for(i in leanpub_quizzes){
-    tx_i  <- readLines(paste0(path,"/", i))
-   # hashtag <-tx_i[grepl(pattern = "^\\#", tx_i)] # maybe we will need to remove these?
+
+  for(quiz in leanpub_quizzes){
+    ### First read lines for each quiz
+    quiz_lines  <- readLines(file.path(path, quiz))
     ### Remove attempts line
-    tx_i <-tx_i[-grep(pattern = "attempts:", tx_i)]
+    quiz_lines <-quiz_lines[-grep(pattern = "attempts:", quiz_lines)]
     ### Remove instruction line # this is not general yet...or maybe ok if we specify this
-    tx_i <-tx_i[-grep(pattern = "Choose the best answer", tx_i)]
+    quiz_lines <-quiz_lines[-grep(pattern = "Choose the best answer", quiz_lines)]
     ### Now to replace type
-    tx_i[grepl(pattern = "choose-answers:", tx_i)]<- c("- typeName: multipleChoice")
+    quiz_lines[grepl(pattern = "choose-answers:", quiz_lines)]<- c("- typeName: multipleChoice")
     ### Now to update question prompts
-    tx_i <-gsub(pattern = "^\\?", replacement = "  prompt:", tx_i)
-    Prompt_loc <- grep(pattern = "\\?", tx_i)
-    tx_i <- insert(x = tx_i, ats = (Prompt_loc + 1), values = "  shuffleOptions: true") 
-    Prompt_loc <- grep(pattern = "shuffleOptions", tx_i)
-    tx_i <- insert(x = tx_i, ats = (Prompt_loc + 1), values = "  options:")
-    #replace the ":" in prompts that have it
-    tx_i[grep(pattern = "prompt:", tx_i)] <- gsub(tx_i[grep(pattern = "prompt:", tx_i)], pattern = ":", replacement = "?")
-    # add back the ":" for "prompt:"
-    tx_i[grep(pattern = "prompt?", tx_i)] <- gsub(tx_i[grep(pattern = "prompt?", tx_i)], pattern = "prompt\\?", replacement = "prompt:")
-    #modify numbered lines for prompt so that they have spaces in front
-    tx_i <- gsub(pattern = "^1.", replacement = "    1.", tx_i)
-    tx_i <- gsub(pattern = "^2.", replacement = "    2.", tx_i)
-    tx_i <- gsub(pattern = "^3.", replacement = "    3.", tx_i)
-    tx_i <- gsub(pattern = "^4.", replacement = "    4.", tx_i)
-    tx_i <- gsub(pattern = "^5.", replacement = "    5.", tx_i)
-    tx_i <- gsub(pattern = "^6.", replacement = "    6.", tx_i)
-    tx_i <- gsub(pattern = "^7.", replacement = "    7.", tx_i)
-    tx_i <- gsub(pattern = "^8.", replacement = "    8.", tx_i)
-    tx_i <- gsub(pattern = "^9.", replacement = "    9.", tx_i)
-    # unlikely for more than 9 options!
+     # Replace question mark at beginning with the "  prompt:"
+    quiz_lines <- gsub(pattern = "^\\?", replacement = "  prompt:", quiz_lines)
+     # Find lines with question marks
+    Prompt_loc <- grep(pattern = "\\?", quiz_lines)
+     # Add "  shuffleOptions: true" to the line after question prompts (the lines with ? - may be after the line with prompt:)
+    quiz_lines <-R.utils::insert(x = quiz_lines, ats = (Prompt_loc + 1), values = "  shuffleOptions: true")
+     # Find the location of the lines just added
+    Prompt_loc <- grep(pattern = "shuffleOptions", quiz_lines)
+     # Add "  options:" in the line after those just added
+    quiz_lines <-R.utils::insert(x = quiz_lines, ats = (Prompt_loc + 1), values = "  options:")
+     # Replace the ":" in prompts that have it
+    quiz_lines[grep(pattern = "prompt:", quiz_lines)] <- gsub(quiz_lines[grep(pattern = "prompt:", quiz_lines)], pattern = ":", replacement = "?")
+     # Add back the ":" for "prompt:" - got removed in last step of code
+    quiz_lines[grep(pattern = "prompt?", quiz_lines)] <- gsub(quiz_lines[grep(pattern = "prompt?", quiz_lines)], pattern = "prompt\\?", replacement = "prompt:")
+     # Modify lines that start with number for prompt so that they have 4 spaces in front
+    quiz_lines[grep("^[1-9].", quiz_lines)] <-paste0("    ", quiz_lines[grep("^[1-9].", quiz_lines)])
     ### Now to remove empty line after options
-    Opt_loc <-grep(pattern = "^  options:", tx_i)
-    tx_i <-tx_i[-(Opt_loc+1)]
+     # First find lines that start with "  options:"
+    Opt_loc <-grep(pattern = "^  options:", quiz_lines)
+     # Remove these lines
+    quiz_lines <-quiz_lines[-(Opt_loc+1)]
     ### Now to update correct answers - First remove half...(coursera only allows one per question)
-    Correct_loc <-grep(pattern = "^C\\)", tx_i)
+     # Find all correct answer lines (those that start with "C)")
+    Correct_loc <-grep(pattern = "^C\\)", quiz_lines)
+     # Of the correct answer lines find odd rows (when divided by 2 there is a remainder)
     Correct_loc_to_rem <- Correct_loc[Correct_loc %%2 =="1"] # find odd rows of correct answers to rem
-    tx_i <-tx_i[-Correct_loc_to_rem]
+     # Remove the odd rows of correct answers
+    quiz_lines <-quiz_lines[-Correct_loc_to_rem]
     ### Now to update remaining correct answers
-    Correct_loc <-grep(pattern = "^C\\)", tx_i) # updating location
-    tx_i <- insert(x = tx_i, ats = (Correct_loc + 1), values = "      isCorrect: true")
-    tx_i <- gsub(pattern = "^C\\)", replacement = "    - answer:", tx_i)
-    ### Now to update mandatory incorrect answers
-    Man_wrong_loc <-grep(pattern = "^m\\)", tx_i)
-    tx_i <- insert(x = tx_i, ats = (Man_wrong_loc + 1), values = "      isCorrect: false")
-    tx_i <- gsub(pattern = "^m\\)", replacement = "    - answer:", tx_i)
-    ### Now to update optional incorrect answers
-    Opt_wrong_loc <-grep(pattern = "^o\\)", tx_i)
-    tx_i <- insert(x = tx_i, ats = (Opt_wrong_loc + 1), values = "      isCorrect: false")
-    tx_i <- gsub(pattern = "^o\\)", replacement = "    - answer:", tx_i)
+     # First need to update location of correct answer lines (since we removed lines)
+    Correct_loc <-grep(pattern = "^C\\)", quiz_lines)
+     # Need to add "isCorrect: true" one line below correct value lines
+    quiz_lines <-R.utils::insert(x = quiz_lines, ats = (Correct_loc + 1), values = "      isCorrect: true")
+     # Change the correct answer lines to start with "    - answer:" instead of "C)"
+    quiz_lines <- gsub(pattern = "^C\\)", replacement = "    - answer:", quiz_lines)
+    ### Now to update Leanpub mandatory incorrect answers
+     # First find the location of lines that start with "m)"
+    Man_wrong_loc <- grep(pattern = "^m\\)", quiz_lines)
+     # Need to add "isCorrect: false" one line below incorrect value lines
+    quiz_lines <-R.utils::insert(x = quiz_lines, ats = (Man_wrong_loc + 1), values = "      isCorrect: false")
+     # Replace "m)" with "    - answer:" at the start of the lines with the mandatory incorrect answers
+    quiz_lines <- gsub(pattern = "^m\\)", replacement = "    - answer:", quiz_lines)
+    ### Now to update Leanpub optional incorrect answers
+    Opt_wrong_loc <-grep(pattern = "^o\\)", quiz_lines)
+     # Need to add "isCorrect: false" one line below incorrect value lines
+    quiz_lines <-R.utils::insert(x = quiz_lines, ats = (Opt_wrong_loc + 1), values = "      isCorrect: false")
+     # Need to replace "o)" with "    - answer:" at the start of the lines with the optional incorrect answers
+    quiz_lines <- gsub(pattern = "^o\\)", replacement = "    - answer:", quiz_lines)
     ### Remove end quiz line
-    tx_i <-tx_i[-grep(pattern = "/quiz", tx_i)]
-    writeLines(tx_i, con=paste0(here("coursera"),"/", i, ".yml"))
+    quiz_lines <-quiz_lines[-grep(pattern = "/quiz", quiz_lines)]
+    ### Write new file with .yml at end of file name and put in coursera dir
+    writeLines(quiz_lines, con=file.path(here::here("coursera"), paste0(quiz, ".yml")))
+
   }
 }
 
+### Run function
 coursera_quizzes()
 

@@ -4,7 +4,6 @@
 # This is functionalized but running like script for now till we decide where to put this:
 # run by  pasting `Rscript scripts/coursera_quiz_conversion.R` in the terminal
 
-library(here)
 library(R.utils)
 
 

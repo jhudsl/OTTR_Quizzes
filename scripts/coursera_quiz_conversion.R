@@ -8,7 +8,7 @@ library(here)
 library(R.utils)
 
 
-coursera_quizzes <- function(path= here("quizzes"), # we might want to update to manuscript
+coursera_quizzes <- function(path= here::here("quizzes"), # we might want to update to manuscript
          verbose = TRUE) {
   leanpub_quizzes = list.files(
     pattern = (".md"),

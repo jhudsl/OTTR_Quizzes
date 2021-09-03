@@ -31,7 +31,7 @@ library(here)
 ```
 
 ```
-## here() starts at /home/rstudio
+## here() starts at /__w/leanbuild/leanbuild
 ```
 
 ```r
@@ -169,7 +169,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-08-31                  
+##  date     2021-09-03                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib
@@ -281,7 +281,7 @@ devtools::session_info()
 ##  RSPM (R 4.0.2)                          
 ##  Github (yihui/knitr@a1052d1)            
 ##  RSPM (R 4.0.0)                          
-##  Github (jhudsl/leanbuild@3595200)       
+##  Github (jhudsl/leanbuild@769c2aa)       
 ##  CRAN (R 4.0.2)                          
 ##  RSPM (R 4.0.0)                          
 ##  CRAN (R 4.0.2)                          

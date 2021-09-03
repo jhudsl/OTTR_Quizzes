@@ -45,12 +45,13 @@ coursera_quizzes <- function(path= here::here("quizzes"), # we might want to upd
     Opt_loc <-grep(pattern = "^  options:", quiz_lines)
     # Remove these lines after those containing options:
     quiz_lines <-quiz_lines[-(Opt_loc+1)]
-    ### Now to update correct answers - First remove half...(coursera only allows one per question)
+    ### Now to update correct answers - First remove all but one for each question - will take first option for all questions except last question
     # Find all correct answer lines (those that start with "C)")
     Correct_loc <-grep(pattern = "^C\\)", quiz_lines)
-    # Of the correct answer lines find odd rows (when divided by 2 there is a remainder)
-    Correct_loc_to_rem <- Correct_loc[Correct_loc %%2 =="1"] # find odd rows of correct answers to rem
-    # Remove the odd rows of correct answers
+    # Of the correct answer lines find rows that are consecutive
+    Correct_loc_to_rem <- Correct_loc[diff(Correct_loc) =="1"] # find consecutive correct value rows to remove
+    Correct_loc_to_rem <- Correct_loc_to_rem[-length(Correct_loc_to_rem)] # don't remove last row - diff always 1 - so remove last value of rows to remove
+    # Remove the consecutive rows of correct answers except for the last row (diff always 1)
     quiz_lines <-quiz_lines[-Correct_loc_to_rem]
     ### Now to update remaining correct answers
     # First need to update location of correct answer lines (since we removed lines)

@@ -31,7 +31,7 @@ library(here)
 ```
 
 ```
-## here() starts at /home/rstudio
+## here() starts at /__w/leanbuild/leanbuild
 ```
 
 ```r
@@ -178,7 +178,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-09-03                  
+##  date     2021-09-06                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib

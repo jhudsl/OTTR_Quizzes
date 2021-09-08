@@ -4,21 +4,26 @@
 # This is functionalized but running like script for now till we decide where to put this:
 # run by  pasting `Rscript scripts/coursera_quiz_conversion.R` in the terminal
 
-coursera_quizzes <- function(path= here::here("ITCR_Cancer_Research_Leadership_Leanpub/quizzes"), # we might want to update to manuscript
+coursera_quizzes <- function(path = file.path("quizzes"), # we might want to update to manuscript
                              verbose = TRUE) {
+  # Need magrittr
+  `%>%` <- dplyr::`%>%`
+
+  # List quiz paths
   leanpub_quizzes = list.files(
     pattern = (".md"),
     ignore.case = TRUE,
     path = path,
     full.names = FALSE)
+
   if (length(leanpub_quizzes) < 1) {
     stop(paste0("No quiz .md files found in your specified path dir of: ", path))
   }
-  print(leanpub_quizzes)
 
   for(quiz in leanpub_quizzes){
 
-    `%>%` <- dplyr::`%>%`
+    # Print out which quiz we're converting
+    message(paste("Converting quiz:", quiz))
 
     ### First read lines for each quiz
     quiz_lines  <- readLines(file.path(path, quiz))
@@ -41,19 +46,29 @@ coursera_quizzes <- function(path= here::here("ITCR_Cancer_Research_Leadership_L
       )) %>%
       # Remove empty lines
         dplyr::filter(type != "empty")
-
-    grep("answer", quiz_lines_df$type)
-    # Find extended prompts:
-    which(quiz_lines_df$type == "prompt"):grep("answer", quiz_lines_df$type)
-
-
+    %>%
       # Now for updating based on type!
       dplyr::mutate(updated_line = dplyr::case_when(
         type == "prompt" ~ stringr::str_replace(quiz_lines, "^\\?", "prompt:"),
         grepl(type, "answer") ~ stringr::str_replace(quiz_lines, "^[[:alpha:]]\\)", "    - answer:"),
-
         TRUE ~ quiz_lines
       ))
+
+    ###### Find extended prompts
+    # Get the starts of prompts
+    start_prompt_indices <- which(quiz_lines_df$type == "prompt")
+
+    # Find the line which the footnote ends at
+    end_prompt_indices <- sapply(start_prompt_indices,
+                                 find_end_of_prompt,
+                                 type_vector = quiz_lines_df$type)
+
+    # Rename "other" as also part of prompts
+    for (index in 1:length(start_prompt_indices)) {
+      if (start_prompt_indices[index] != end_prompt_indices[index]) {
+      quiz_lines_df$type[(start_prompt_indices[index] + 1):(end_prompt_indices[index] - 1)] <- "extended_prompt"
+      }
+    }
 
     ### Now to update question prompts
     prompt_loc <- which(quiz_lines_df$type == "prompt")
@@ -84,3 +99,32 @@ coursera_quizzes <- function(path= here::here("ITCR_Cancer_Research_Leadership_L
 ### Run function
 coursera_quizzes()
 
+
+# Given an index of the start of a prompt, find the end of it.
+# The end of the prompt is identified by finding the beginning of the answers
+find_end_of_prompt <- function(start_prompt_index, type_vector) {
+
+  # We want to see if the next line is where the answers start
+  end_prompt_index <- start_prompt_index + 1
+
+  # See if the end of the prompt is in the same line
+  end_prompt <- grepl("answer", type_vector[end_prompt_index])
+
+  # Keep looking in each next line until we find it.
+  if (end_prompt == FALSE) {
+    while (end_prompt == FALSE) {
+      # Add one
+      end_prompt_index <- end_prompt_index + 1
+
+      # Look in next line
+      end_prompt <- grepl("answer", type_vector[end_prompt_index])
+
+      if (end_prompt_index == length(type_vector) && end_prompt == FALSE) {
+        stop(paste("Searched end of file and could not find end of prompt that starts at line:", start_prompt_index))
+      }
+    }
+  } else {
+    end_prompt_index <- start_prompt_index
+  }
+  return(end_prompt_index - 1)
+}

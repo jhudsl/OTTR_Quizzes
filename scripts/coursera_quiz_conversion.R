@@ -4,6 +4,8 @@
 # This is functionalized but running like script for now till we decide where to put this:
 # run by  pasting `Rscript scripts/coursera_quiz_conversion.R` in the terminal
 
+# Need magrittr
+`%>%` <- dplyr::`%>%`
 
 find_end_of_prompt <- function(start_prompt_index, type_vector) {
   # Given an index of the start of a prompt, find the end of it. The end of the prompt is identified by finding the beginning of the answers
@@ -53,11 +55,13 @@ convert_quiz <- function(quiz_path, output_dir, verbose = TRUE) {
   #   a coursera ready quiz saved to the output directory specified
 
   # Print out which quiz we're converting
-  message(paste("Converting quiz:", quiz))
+  message(paste("Converting quiz:", quiz_path))
+
+  output_filename <- file.path(output_dir, paste0(basename(quiz_path), ".yml"))
 
   ### First read lines for each quiz
   # Put it as a data.frame:
-  quiz_lines_df <- data.frame(quiz_lines = readLines(file.path(path, quiz))) %>%
+  quiz_lines_df <- data.frame(quiz_lines = readLines(file.path(quiz_path))) %>%
     dplyr::mutate(type = dplyr::case_when(
       # Find starts to questions:
       grepl("^\\?", quiz_lines) ~ "prompt",
@@ -134,13 +138,13 @@ convert_quiz <- function(quiz_path, output_dir, verbose = TRUE) {
   )
 
   ### Write new file with .yml at end of file name and put in coursera dir
-  writeLines(updated_quiz_lines, con = file.path(output_dir, paste0(quiz, ".yml")))
+  writeLines(updated_quiz_lines, con = output_filename)
 
   # Put message
-  message(paste("Converted quiz saved to:", file.path(output_dir, paste0(quiz, ".yml"))))
+  message(paste("Converted quiz saved to:", output_filename))
 }
 
-convert_coursera_quizzes <- function(quiz_path = "quizzes",
+convert_coursera_quizzes <- function(quiz_dir = "quizzes",
                                      output_dir = "coursera_quizzes",
                                      verbose = TRUE) {
 
@@ -148,15 +152,12 @@ convert_coursera_quizzes <- function(quiz_path = "quizzes",
   # by passing them to `convert_quiz`.
   #
   # Args:
-  #   quiz_path: a path to a directory of leanpub formatted quiz md files
+  #   quiz_dir: a path to a directory of leanpub formatted quiz md files
   #   output_dir: a folder (existing or not) that the new coursera converted quizzes should be saved to.
   #   verbose: would you like the progress messages?
   #
   # Returns:
   #   a coursera ready quiz saved to the output directory specified
-
-  # Need magrittr
-  `%>%` <- dplyr::`%>%`
 
   # Create directory if it is not yet created
   if (!dir.exists(output_dir)) {
@@ -167,12 +168,12 @@ convert_coursera_quizzes <- function(quiz_path = "quizzes",
   leanpub_quizzes <- list.files(
     pattern = (".md"),
     ignore.case = TRUE,
-    path = path,
-    full.names = FALSE
+    path = quiz_dir,
+    full.names = TRUE
   )
 
   if (length(leanpub_quizzes) < 1) {
-    stop(paste0("No quiz .md files found in your specified path dir of: ", path))
+    stop(paste0("No quiz .md files found in your specified path dir of: ", quiz_path))
   }
 
   # Run the thing!
@@ -181,3 +182,6 @@ convert_coursera_quizzes <- function(quiz_path = "quizzes",
          verbose = verbose,
          output_dir = output_dir)
 }
+
+# RUN IT!
+convert_coursera_quizzes()

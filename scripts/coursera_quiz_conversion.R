@@ -92,15 +92,20 @@ convert_quiz <- function(quiz_path, output_dir, verbose = TRUE) {
   # Rename "other" as also part of prompts
   for (index in 1:length(start_prompt_indices)) {
     if (start_prompt_indices[index] != end_prompt_indices[index]) {
+
+      # Mark things as a part of prompts
       quiz_lines_df$type[(start_prompt_indices[index] + 1):(end_prompt_indices[index] - 1)] <- "extended_prompt"
+
+      # Mark the end of prompts
+      quiz_lines_df$type[end_prompt_indices[index] - 1] <- "end_prompt"
     }
   }
 
   quiz_lines_df <- quiz_lines_df %>%
     # Now for updating based on type!
     dplyr::mutate(updated_line = dplyr::case_when(
-      type == "prompt" ~ stringr::str_replace(quiz_lines, "^\\?", "prompt:"),
-      type == "extended_prompt" ~ paste0("    ", quiz_lines),
+      type == "prompt" ~ stringr::str_replace(quiz_lines, "^\\?", "  prompt:"),
+      type %in% c("extended_prompt", "end_prompt") ~ paste0("    ", quiz_lines),
       grepl("answer", type) ~ stringr::str_replace(quiz_lines, "^[[:alpha:]]\\)", "    - answer:"),
       TRUE ~ quiz_lines
     ))
@@ -111,30 +116,43 @@ convert_quiz <- function(quiz_path, output_dir, verbose = TRUE) {
 
 
   ### Add "  options:" before beginning of answer options
-  updated_quiz_lines <- R.utils::insert(updated_quiz_lines, ats = end_prompt_indices + 1, values = "  options:")
+  updated_quiz_lines <- R.utils::insert(updated_quiz_lines,
+    ats = which(names(updated_quiz_lines) == "end_prompt") + 1,
+    values = "  options:"
+    )
 
   ### Add specs for coursera
   # Add typeName before prompt starts:
   updated_quiz_lines <- R.utils::insert(updated_quiz_lines,
-    ats = which(names(updated_quiz_lines) == "prompt") - 1,
+    ats = which(names(updated_quiz_lines) == "prompt"),
     values = "- typeName: multipleChoice"
-  )
+    )
 
   # Add shuffleoptions: true after prompt ends
   updated_quiz_lines <- R.utils::insert(updated_quiz_lines,
-    ats = which(names(updated_quiz_lines) == "prompt") + 1,
+    ats = which(names(updated_quiz_lines) == "end_prompt") + 1,
     values = "  shuffleOptions: true"
-  )
+    )
 
   # Need to add "isCorrect: true" one line below correct value lines
   updated_quiz_lines <- R.utils::insert(updated_quiz_lines,
-    ats = which(names(updated_quiz_lines) == "correct_answer"),
+    ats = which(names(updated_quiz_lines) == "correct_answer") + 1,
     values = "      isCorrect: true"
   )
+
   # Need to add "isCorrect: false" one line below incorrect value lines
   updated_quiz_lines <- R.utils::insert(updated_quiz_lines,
-    ats = which(names(updated_quiz_lines) == "wrong_answer"),
+    ats = which(names(updated_quiz_lines) == "wrong_answer") + 1,
     values = "      isCorrect: false"
+  )
+
+  # Remove other lines
+  updated_quiz_lines <- updated_quiz_lines[-grep("other", names(updated_quiz_lines))]
+
+  # Add extra line in between each question
+  updated_quiz_lines <- R.utils::insert(updated_quiz_lines,
+                                        ats = grep("typeName:", updated_quiz_lines),
+                                        values = ""
   )
 
   ### Write new file with .yml at end of file name and put in coursera dir

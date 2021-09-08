@@ -4,7 +4,7 @@
 # This is functionalized but running like script for now till we decide where to put this:
 # run by  pasting `Rscript scripts/coursera_quiz_conversion.R` in the terminal
 
-coursera_quizzes <- function(path= here::here("quizzes"), # we might want to update to manuscript
+coursera_quizzes <- function(path= here::here("ITCR_Cancer_Research_Leadership_Leanpub/quizzes"), # we might want to update to manuscript
                              verbose = TRUE) {
   leanpub_quizzes = list.files(
     pattern = (".md"),
@@ -12,60 +12,70 @@ coursera_quizzes <- function(path= here::here("quizzes"), # we might want to upd
     path = path,
     full.names = FALSE)
   if (length(leanpub_quizzes) < 1) {
-    warning("You need quiz files in your specified path dir")
+    stop(paste0("No quiz .md files found in your specified path dir of: ", path))
   }
   print(leanpub_quizzes)
 
   for(quiz in leanpub_quizzes){
+
+    `%>%` <- dplyr::`%>%`
+
     ### First read lines for each quiz
     quiz_lines  <- readLines(file.path(path, quiz))
-    ### Remove attempts line and final line and instruction line about choosing the best answer (this requires people following leanpub template)
-    quiz_lines <-quiz_lines[-grep(pattern = "attempts:|Choose the best answer|/quiz", quiz_lines)]
-    ### Now to replace type
-    quiz_lines[grepl(pattern = "choose-answers:", quiz_lines)]<- c("- typeName: multipleChoice")
+
+    # Put it as a data.frame:
+    quiz_lines_df <- data.frame(quiz_lines) %>%
+      dplyr::mutate(type = dplyr::case_when(
+        # Find starts to questions:
+        grepl("^\\?", quiz_lines) ~ "prompt",
+        # Find which lines are the wrong answer options
+        grepl("^[[:lower:]]{1}\\)", quiz_lines) ~ "wrong_answer",
+        # Find which lines are the correct answer options
+        grepl("^[[:upper:]]{1}\\)", quiz_lines) ~ "correct_answer",
+        # Find the tags
+        grepl("^\\{", quiz_lines) ~ "tag",
+        # Mark empty lines
+        nchar(quiz_lines) == 0 ~ "empty",
+        # Mark everything else as "other
+        TRUE ~ "other"
+      )) %>%
+      # Remove empty lines
+        dplyr::filter(type != "empty")
+
+    grep("answer", quiz_lines_df$type)
+    # Find extended prompts:
+    which(quiz_lines_df$type == "prompt"):grep("answer", quiz_lines_df$type)
+
+
+      # Now for updating based on type!
+      dplyr::mutate(updated_line = dplyr::case_when(
+        type == "prompt" ~ stringr::str_replace(quiz_lines, "^\\?", "prompt:"),
+        grepl(type, "answer") ~ stringr::str_replace(quiz_lines, "^[[:alpha:]]\\)", "    - answer:"),
+
+        TRUE ~ quiz_lines
+      ))
+
     ### Now to update question prompts
-    # Replace question mark at beginning with the "  prompt:"
-    quiz_lines <- gsub(pattern = "^\\?", replacement = "  prompt:", quiz_lines)
-    # Find lines with question marks
-    Prompt_loc <- grep(pattern = "\\?", quiz_lines)
-    # Add "  shuffleOptions: true" to the line after question prompts (the lines with ? - may be after the line with prompt:)
-    quiz_lines <-R.utils::insert(x = quiz_lines, ats = (Prompt_loc + 1), values = "  shuffleOptions: true")
-    # Find the location of the lines just added
-    Prompt_loc <- grep(pattern = "shuffleOptions", quiz_lines)
+    prompt_loc <- which(quiz_lines_df$type == "prompt")
+
+    # Start each question with this type:
+    quiz_lines <- R.utils::insert(quiz_lines, ats = (prompt_loc + 1), values = "- typeName: multipleChoice")
+
+    # Add "  shuffleoptions: true" to the line after question prompts (the lines with ? - may be after the line with prompt:)
+    quiz_lines <- R.utils::insert(quiz_lines, ats = (prompt_loc + 1), values = "  shuffleOptions: true")
+
     # Add "  options:" in the line after those just added
-    quiz_lines <-R.utils::insert(x = quiz_lines, ats = (Prompt_loc + 1), values = "  options:")
-    # Replace the ":" in prompts that have it
-    quiz_lines[grep(pattern = "prompt:", quiz_lines)] <- gsub(quiz_lines[grep(pattern = "prompt:", quiz_lines)], pattern = ":", replacement = "?")
-    # Add back the ":" for "prompt:" - got removed in last step of code
-    quiz_lines[grep(pattern = "prompt?", quiz_lines)] <- gsub(quiz_lines[grep(pattern = "prompt?", quiz_lines)], pattern = "prompt\\?", replacement = "prompt:")
+    quiz_lines <- R.utils::insert(quiz_lines, ats = (prompt_loc + 2), values = "  options:")
+
     # Modify lines that start with number for prompt so that they have 4 spaces in front
-    quiz_lines[grep("^[1-9].", quiz_lines)] <-paste0("    ", quiz_lines[grep("^[1-9].", quiz_lines)])
-    ### Now to remove empty line after options
-    # First find lines that start with "  options:"
-    Opt_loc <-grep(pattern = "^  options:", quiz_lines)
-    # Remove these lines after those containing options:
-    quiz_lines <-quiz_lines[-(Opt_loc+1)]
-    ### Now to update correct answers - First remove half...(coursera only allows one per question)
-    # Find all correct answer lines (those that start with "C)")
-    Correct_loc <-grep(pattern = "^C\\)", quiz_lines)
-    # Of the correct answer lines find odd rows (when divided by 2 there is a remainder)
-    Correct_loc_to_rem <- Correct_loc[Correct_loc %%2 =="1"] # find odd rows of correct answers to rem
-    # Remove the odd rows of correct answers
-    quiz_lines <-quiz_lines[-Correct_loc_to_rem]
-    ### Now to update remaining correct answers
-    # First need to update location of correct answer lines (since we removed lines)
-    Correct_loc <-grep(pattern = "^C\\)", quiz_lines)
+    quiz_lines[grep("^[1-9].", quiz_lines)] <- paste0("    ", quiz_lines[grep("^[1-9].", quiz_lines)])
+
     # Need to add "isCorrect: true" one line below correct value lines
-    quiz_lines <-R.utils::insert(x = quiz_lines, ats = (Correct_loc + 1), values = "      isCorrect: true")
-    # Change the correct answer lines to start with "    - answer:" instead of "C)"
-    quiz_lines <- gsub(pattern = "^C\\)", replacement = "    - answer:", quiz_lines)
-    ### Now to update Leanpub mandatory and optional incorrect answers
-    # First find the location of lines that start with "m)" or "o)"
-    Wrong_loc <- grep(pattern = "^m\\)|^o\\)", quiz_lines)
+    quiz_lines <-R.utils::insert(quiz_lines, ats = (Correct_loc + 1), values = "      isCorrect: true")
+
     # Need to add "isCorrect: false" one line below incorrect value lines
-    quiz_lines <-R.utils::insert(x = quiz_lines, ats = (Wrong_loc + 1), values = "      isCorrect: false")
-    # Replace "m)" with "    - answer:" at the start of the lines with the mandatory incorrect answers
-    quiz_lines <- gsub(pattern = "^m\\)|^o\\)", replacement = "    - answer:", quiz_lines)
+    quiz_lines <- R.utils::insert(quiz_lines, ats = (Wrong_loc + 1), values = "      isCorrect: false")
+
     ### Write new file with .yml at end of file name and put in coursera dir
     writeLines(quiz_lines, con=file.path(here::here("coursera"), paste0(quiz, ".yml")))
   }

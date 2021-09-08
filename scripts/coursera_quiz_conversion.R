@@ -155,6 +155,15 @@ convert_quiz <- function(quiz_path, output_dir, verbose = TRUE) {
                                         values = ""
   )
 
+  # Trim trailing space
+  updated_quiz_lines <- trimws(updated_quiz_lines, which = "right")
+
+  # Add extra line in between each question
+  updated_quiz_lines <- stringr::str_remove(updated_quiz_lines, ":$")
+
+  # Return the options : though
+  updated_quiz_lines <- stringr::str_replace(updated_quiz_lines, "  options", "  options:")
+
   ### Write new file with .yml at end of file name and put in coursera dir
   writeLines(updated_quiz_lines, con = output_filename)
 

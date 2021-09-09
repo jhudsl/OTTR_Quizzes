@@ -154,6 +154,22 @@ To host your course on Leanpub follow these steps:
 
  4) Once you are ready and you like your course, you can click the "Publish New Version" instead of "Preview New Version".
 
+## Converting quizzes from Leanpub to Coursera format
+
+[See more instructions on how to port a course made from these templates to Coursera](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#publishing-to-coursera). 
+
+You can convert your quizzes to a nicely upload-able yaml file in this repository byrunning this command in the docker image
+
+`Rscript scripts/coursera_quiz_conversion.R`
+
+Note that currently images and links are not supported and if your quizzes contain those, you will have to manually add them at this time.
+
+You can run this same command locally if you wish to test something.
+This render the chapters without the table of Contents.
+If you do not wish to publish to Coursera and prefer this do not run, you may delete this section (but it shouldn't hurt anything to keep as is -- unless for some reason it causes you some troubles).
+
+ Additionally, the Leanpub companion repository has a [Leanpub -> Coursera quiz conversion script](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/scripts/coursera_quiz_conversion.R) if you choose to create quizzes and publish on both Leanpub and Coursera.
+
 ### Setting up this repository checklist:
 
  - [ ] `main` branch has been set up:

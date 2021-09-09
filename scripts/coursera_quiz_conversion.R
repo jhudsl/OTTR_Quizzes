@@ -43,6 +43,7 @@ find_end_of_prompt <- function(start_prompt_index, type_vector) {
   return(end_prompt_index)
 }
 
+
 convert_quiz <- function(quiz_path, output_dir, verbose = TRUE) {
   # Make a leanpub formatted md file quiz into a coursera yaml file quiz
   #
@@ -73,6 +74,8 @@ convert_quiz <- function(quiz_path, output_dir, verbose = TRUE) {
       grepl("^\\{", quiz_lines) ~ "tag",
       # Mark empty lines
       nchar(quiz_lines) == 0 ~ "empty",
+      # Mark which lines have links
+      grepl("\\!\\[|http", quiz_lines) ~ "link",
       # Mark everything else as "other
       TRUE ~ "other"
     )) %>%

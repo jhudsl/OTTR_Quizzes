@@ -1,9 +1,11 @@
 # Getting Started with this Leanpub course template repository
 
 This template repository includes all of the files that you need to get converting your Bookdown course that was set up from a [DaSL_Course_Template_Bookdown](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md) to a [Leanpub](https://leanpub.com/) course with quizzes.
+These repositories are separate so that the quizzes and answers can be kept private.
 If you haven't created a _Bookdown repository from this template, you should go to that [template repository's getting started section](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md) and start there.
 
 <img src="https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=geb00d6af62_0_0" width="500" height="500"/>
+
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -20,11 +22,25 @@ If you haven't created a _Bookdown repository from this template, you should go 
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+## How to use these repositories:
+
+If you don't wish to have quizzes with your material or publish on Leanpub then you do not need this repository template, and the [_Bookdown template repository](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md) should be sufficient for your needs.
+
+<img src="https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=ged277ddb11_3_5" width="500" height="500"/>
+
+The Leanpub repository is where quizzes are stored because it is meant to be kept private so answers are hidden.
+
+Keep in mind that in order to keep your Leanpub and Bookdown versions of your course concurrent, you should not make chapter edits in this repository!
+Only quiz edits should be in your `_Leanpub` repository.
+Chapter changes should be made in your `_Bookdown` repository and the [`transfer-rendered_files.yml`](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/transfer-rendered-files.yml) Github action should be used to copy over the changes here.
+
 ## Setting up your Leanpub Github repository
 
 In the upper right of this screen, click `Use this template` and follow the steps to set up your course's GitHub repository.
 
 Name your repository fill in a short description (If this is an ITCR course, start the repo name with `ITCR_`).
+
+Make sure to set your new repository to `Private` so your quiz answers will be hidden.
 
 ##### Set up branches
 
@@ -154,7 +170,25 @@ To host your course on Leanpub follow these steps:
 
  4) Once you are ready and you like your course, you can click the "Publish New Version" instead of "Preview New Version".
 
+## Converting quizzes from Leanpub to Coursera format
+
+[See more instructions on how to port a course made from these templates to Coursera](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#publishing-to-coursera).
+
+You can convert your quizzes to a nicely upload-able yaml file in this repository byrunning this command in the docker image
+
+`Rscript scripts/coursera_quiz_conversion.R`
+
+Note that currently images and links are not supported and if your quizzes contain those, you will have to manually add them at this time.
+
+You can run this same command locally if you wish to test something.
+This render the chapters without the table of Contents.
+If you do not wish to publish to Coursera and prefer this do not run, you may delete this section (but it shouldn't hurt anything to keep as is -- unless for some reason it causes you some troubles).
+
+ Additionally, the Leanpub companion repository has a [Leanpub -> Coursera quiz conversion script](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/scripts/coursera_quiz_conversion.R) if you choose to create quizzes and publish on both Leanpub and Coursera.
+
 ### Setting up this repository checklist:
+
+- [ ]Repository is created and set to `private`.
 
  - [ ] `main` branch has been set up:
    - [ ] `Require pull request reviews before merging` box is checked.

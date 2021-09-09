@@ -98,39 +98,70 @@ convert_quiz <- function(quiz_path, output_dir, verbose = TRUE) {
 
       # Mark the end of prompts
       quiz_lines_df$type[end_prompt_indices[index] - 1] <- "end_prompt"
+    } else {
+      quiz_lines_df$type[start_prompt_indices[index]] <- "single_line_prompt"
     }
   }
 
   quiz_lines_df <- quiz_lines_df %>%
     # Now for updating based on type!
     dplyr::mutate(updated_line = dplyr::case_when(
-      type == "prompt" ~ stringr::str_replace(quiz_lines, "^\\?", "  prompt:"),
+      type %in% c("prompt", "single_line_prompt") ~ stringr::str_replace(quiz_lines, "^\\?", "  prompt:"),
       type %in% c("extended_prompt", "end_prompt") ~ paste0("    ", quiz_lines),
       grepl("answer", type) ~ stringr::str_replace(quiz_lines, "^[[:alpha:]]\\)", "    - answer:"),
       TRUE ~ quiz_lines
     ))
 
+  #### Create a question number column so we can track answers by question
+  # Create an empty one
+  quiz_lines_df$q_num <- rep(NA, nrow(quiz_lines_df))
+
+  # Fill in which question each belongs to
+  q_indices <- c(start_prompt_indices, nrow(quiz_lines_df))
+
+  # Create variable that identifies which question it belongs to
+  for (index in 1:(length(q_indices) - 1)) {
+    quiz_lines_df$q_num[seq(from = q_indices[index],
+                            to = q_indices[index + 1] - 1)] <- index
+  }
+  quiz_lines_df$q_num[nrow(quiz_lines_df)] <- max(quiz_lines_df$q_num)
+
+  # Make an index
+  quiz_lines_df$index <- 1:nrow(quiz_lines_df)
+
+  # Declare the correct answers by which ones are the first ones listed
+  correct_answers <- quiz_lines_df %>%
+    dplyr::filter(type == "correct_answer") %>%
+    dplyr::distinct(q_num, .keep_all = TRUE)
+
+  # Identify other correct answers that we don't want to keep
+  remove_answers <- setdiff(dplyr::filter(quiz_lines_df, type == "correct_answer")$index,
+                            correct_answers$index)
+
+  # Remove any correct answers that aren't those
+  quiz_lines_df <- quiz_lines_df %>%
+    dplyr::filter(!(index %in% remove_answers))
+
   # Turn updated lines into a named vector
   updated_quiz_lines <- quiz_lines_df$updated_line
   names(updated_quiz_lines) <- quiz_lines_df$type
 
-
-  ### Add "  options:" before beginning of answer options
-  updated_quiz_lines <- R.utils::insert(updated_quiz_lines,
-    ats = which(names(updated_quiz_lines) == "end_prompt") + 1,
-    values = "  options:"
-    )
-
   ### Add specs for coursera
   # Add typeName before prompt starts:
   updated_quiz_lines <- R.utils::insert(updated_quiz_lines,
-    ats = which(names(updated_quiz_lines) == "prompt"),
+    ats = which(names(updated_quiz_lines) %in% c("prompt", "single_line_prompt")),
     values = "- typeName: multipleChoice"
+  )
+
+  ### Add "  options:" before beginning of answer options
+  updated_quiz_lines <- R.utils::insert(updated_quiz_lines,
+    ats = which(names(updated_quiz_lines) %in% c("end_prompt", "single_line_prompt")) + 1,
+    values = "  options:"
     )
 
   # Add shuffleoptions: true after prompt ends
   updated_quiz_lines <- R.utils::insert(updated_quiz_lines,
-    ats = which(names(updated_quiz_lines) == "end_prompt") + 1,
+    ats = which(names(updated_quiz_lines) %in% c("end_prompt", "single_line_prompt")) + 1,
     values = "  shuffleOptions: true"
     )
 

@@ -188,6 +188,8 @@ If you do not wish to publish to Coursera and prefer this do not run, you may de
 
 ### Setting up this repository checklist:
 
+- [ ]Repository is created and set to `private`.
+
  - [ ] `main` branch has been set up:
    - [ ] `Require pull request reviews before merging` box is checked.
    - [ ] `Require status checks to pass before merging` box is checked.

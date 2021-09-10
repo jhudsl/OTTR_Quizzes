@@ -30,7 +30,7 @@ library(here)
 ```
 
 ```
-## here() starts at /__w/leanbuild/leanbuild
+## here() starts at /home/rstudio
 ```
 
 ```r

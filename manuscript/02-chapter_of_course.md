@@ -1,6 +1,5 @@
 ---
 title: "Chapter of course"
-output: html_document
 ---
 
 
@@ -49,17 +48,17 @@ Here's a subheading and some text in this subsection!
 
 ### Code examples
 
-You can demonstrate code like this: 
+You can demonstrate code like this:
 
 
 ```r
-output_dir <- "code_output"
+output_dir <- file.path("resources", "code_output")
 if (!dir.exists(output_dir)) {
   dir.create(output_dir)
 }
 ```
 
-And make pretty plots too: 
+And make pretty plots too:
 
 
 ```r
@@ -72,7 +71,7 @@ iris %>%
 {width: "672", align: "middle",}
 ![](resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png).
 
-You can also save these plots to file: 
+You can also save these plots to file:
 
 
 ```r
@@ -85,19 +84,21 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 
 ### Image example
 
-How to include a Google slide. It's simplest to use the `leanbuild` package: 
+
+How to include a Google slide. It's simplest to use the `leanbuild` package:
 
 {alt: "Major point!! example image", width: "100%", align: "middle",}
 ![](resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png).
 
-But if you have the slide or some other image locally downloaded you can also use html like this: 
+But if you have the slide or some other image locally downloaded you can also use html like this:
 
 {alt: "Major point!! example image", width: "100%", align: "middle",}
 ![](resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png).
+
 
 ### Video examples
 
-You can use `knitr::include_url()` like this: 
+You can use `knitr::include_url()` like this:
 
 
 ```r
@@ -107,30 +108,30 @@ knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
 {height: "400px", width: "672", align: "middle", type: "video", poster: "http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg",}
 ![Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=VOCYL-FNbr0).
 
-OR this works: 
+OR this works:
 
 {height: "400px", width: "672", align: "middle", type: "video", poster: "http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg",}
 ![Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=VOCYL-FNbr0).
 
 ### Links to files
 
-This works: 
+This works:
 
 {height: "800px", width: "672", align: "middle",}
 [Check out this link](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf).
 
-Or this: 
+Or this:
 
 [This works](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf).
 
-Or this: 
+Or this:
 
 {height: "800px", width: "672", align: "middle",}
 [Check out this link](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf).
 
 ### Links to websites
 
-Examples of including a website link. 
+Examples of including a website link.
 
 This works:
 
@@ -144,9 +145,9 @@ knitr::include_url("https://yihui.org")
 
 OR this:
 
-![Another link](https://yihui.org) 
+![Another link](https://yihui.org)
 
-OR this: 
+OR this:
 
 {height: "400px", width: "672", align: "middle",}
 [Check out this link](https://yihui.org).
@@ -178,7 +179,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-09-09                  
+##  date     2021-09-10                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            

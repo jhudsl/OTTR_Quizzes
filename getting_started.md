@@ -174,9 +174,11 @@ To host your course on Leanpub follow these steps:
 
 [See more instructions on how to port a course made from these templates to Coursera](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#publishing-to-coursera).
 
-You can convert your quizzes to a nicely upload-able yaml file in this repository byrunning this command in the docker image
+You can convert your quizzes to a nicely upload-able yaml file in this repository by running this command in the docker image
 
-`Rscript scripts/coursera_quiz_conversion.R`
+```
+leanbuild::convert_quizzes()
+```
 
 Note that currently images and links are not supported and if your quizzes contain those, you will have to manually add them at this time.
 

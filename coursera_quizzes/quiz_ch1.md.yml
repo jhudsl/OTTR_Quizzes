@@ -1,6 +1,7 @@
 
 - typeName: multipleChoice
   prompt: First question to ask goes here. (Note- you need a question mark at end like this. Just one is required if using a question mark in your question field)?
+
   shuffleOptions: true
   options:
     - answer: One correct answer here marked with a "C"
@@ -16,6 +17,7 @@
 
 - typeName: multipleChoice
   prompt: Question example with just a question mark?
+
   shuffleOptions: true
   options:
     - answer: One correct answer here marked with a "C"
@@ -31,6 +33,7 @@
 
 - typeName: multipleChoice
   prompt: Second question to ask goes here.?
+
   shuffleOptions: true
   options:
     - answer: One correct answer here marked with a "C"

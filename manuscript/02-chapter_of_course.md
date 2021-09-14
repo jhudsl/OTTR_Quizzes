@@ -30,7 +30,7 @@ library(here)
 ```
 
 ```
-## here() starts at /home/rstudio
+## here() starts at /home/rstudio/Desktop/GitRepos/DaSL_Course_Template_Leanpub
 ```
 
 ```r
@@ -179,7 +179,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-09-11                  
+##  date     2021-09-14                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
@@ -244,7 +244,6 @@ devtools::session_info()
 ## [1] /usr/local/lib/R/site-library
 ## [2] /usr/local/lib/R/library
 ```
-*Please provide any feedback with [this form!](https://forms.gle/hc8Xt3Y2Znjb6M4Y7) We appreciate your thoughts.*
 
 ## References
 Xie, Yihui. 2016. *Bookdown: Authoring Books and Technical Documents with R Markdown*. Boca Raton, Florida: Chapman; Hall/CRC. <https://github.com/rstudio/bookdown>.

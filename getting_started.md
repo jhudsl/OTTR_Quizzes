@@ -1,12 +1,12 @@
 # Getting Started with this Leanpub course template repository
 
-This template repository includes all of the files that you need to get converting your Bookdown course that was set up from a [DaSL_Course_Template_Bookdown](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md) to a [Leanpub](https://leanpub.com/) course with quizzes.
+This template repository includes all of the files that you need to get converting your Bookdown course that was set up from a [DaSL_Course_Template_Bookdown](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki) to a [Leanpub](https://leanpub.com/) course with quizzes.
 These repositories are separate so that the quizzes and answers can be kept private.
-If you haven't created a _Bookdown repository from this template, you should go to that [template repository's getting started section](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md) and start there.
+If you haven't created a _Bookdown repository from this template, you should go to that [template repository's getting started section](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started) and start there.
 
 <img src="https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=geb00d6af62_0_0" width="500" height="500"/>
 
-If you encounter any problems or have ideas for improvements to this template repository or this getting started guide, please [file an issue here](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/issues/new/choose)! Your feedback is very much appreciated.
+If you encounter any problems or have ideas for improvements to this template repository or the getting started guide, please [file an issue here](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/issues/new/choose)! Your feedback is very much appreciated.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -60,7 +60,7 @@ _Make sure branches are updated_:
 _Use automatic spell and URL checks_:  
 After the first pull request, a couple of checks will automatically happen and then appear here in settings.
 Then, you can require these checks to pass before merging pull requests by returning here and selecting them - they are `url_check` and `sp-check` they will check that the urls work and that the quizzes do not have spelling errors.
-See the [Github Actions section in the Bookdown repository](#github-actions) for more details on these.
+See the [Github Actions section in the Bookdown repository](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/How-to-set-up-and-customize-GitHub-actions-robots) for more details on these.
 
 After setting up these new branch items, click `Create` and `Save changes`.
 
@@ -87,7 +87,7 @@ jobs:
 ```
 
 Change the `repository:` line to have the name of this new Leanpub repository.
-Note if you haven't set a [GH_PAT git secret](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#set-up-github-secrets) and you are not a part of `jhudsl` organization, you will need to set that by following the instructions linked in the _Bookdown repository's getting_started.md.
+Note if you haven't set a [GH_PAT git secret](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Setting-up-GitHub-secrets) and you are not a part of `jhudsl` organization, you will need to set that by following the instructions linked in the _Bookdown repository's getting_started.md.
 
 Optionally/Recommended -- if you would like to have PRs filed _automatically_ when you make changes to your _Bookdown repository, you will need to uncomment this section at the top of the file:
 
@@ -114,7 +114,7 @@ When updates are made to files that aren't specific to the course content but in
 
 To enroll in these automatic update PRs, the new course's repository name will need to be added to [this file in the original template](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/.github/sync.yml) where it says `#NEW REPO HERE#`.
 File a pull request to make this change.
-If the your new course doesn't need some of the functionality of these files or you find the automatic you can feel free to use [this guide](https://github.com/marketplace/actions/repo-file-sync-action#sync-the-same-files-to-multiple-repositories) to tailor which files you want updates for.
+If the your new course doesn't need some of the functionality of these files or you find the automatic you can feel free to use [this guide](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Receiving-template-updates) to tailor which files you want updates for.
 
 ### Setting up quizzes
 
@@ -139,7 +139,7 @@ Note that any `.md` files with an `#` in front of the name in the `Book.txt` fil
 
 ## Leanpub rendering
 
-For convenience purposes the leanbuild package can do most of the formatting of links and etc for you (so long as you followed the formatting prescribed by the [getting_started.md document in the Bookdown Course Template repository](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#setting-up-images-and-graphics).
+For convenience purposes the leanbuild package can do most of the formatting of links and etc for you (so long as you followed the formatting prescribed by the [getting_started.md document in the Bookdown Course Template repository](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Setting-up-images-and-graphics).
 
 Github actions in this repository will attempt to do the bookdown to leanpub conversions for you by running `leanbuild::bookdown_to_leanpub()` function at the top of the repository.
 You can also run this command manually if you wish.
@@ -187,19 +187,19 @@ You can run this same command locally if you wish to test something.
 This render the chapters without the table of Contents.
 If you do not wish to publish to Coursera and prefer this do not run, you may delete this section (but it shouldn't hurt anything to keep as is -- unless for some reason it causes you some troubles).
 
- Additionally, the Leanpub companion repository has a [Leanpub -> Coursera quiz conversion script](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/scripts/coursera_quiz_conversion.R) if you choose to create quizzes and publish on both Leanpub and Coursera.
+ Additionally, the leanbuild has a `leanbuild::convert_quizzes()` function to create Coursera versions of quizzes if you choose to create quizzes and publish on both Leanpub and Coursera.
 
 ### Setting up this repository checklist:
 
-- [ ]Repository is created and set to `private`.
+- [ ] Repository is created and set to `private`.
 
  - [ ] `main` branch has been set up:
    - [ ] `Require pull request reviews before merging` box is checked.
    - [ ] `Require status checks to pass before merging` box is checked.
      - [ ] Underneath that `Require branches to be up to date before merging` box is checked.
 
- - [ ] [This course's _Bookdown repository has been linked in the github actions](./getting_started.md#linking-to-your-_bookdown-github-repository)
+ - [ ] [This course's _Bookdown repository has been linked in the github actions](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Publishing-on-Leanpub#linking-to-your-_bookdown-github-repository)
 
- - [ ] [This course's Leanpub has been set up](./getting_started.md#hosting-your-course-on-leanpub)
+ - [ ] [This course's Leanpub has been set up](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Publishing-on-Leanpub#hosting-your-course-on-leanpub)
 
-- [ ] This repo has been enrolled in [automatic updates from the original template](#receiving-automatic-mechanic-updates-from-the-original-template).
+- [ ] This repo has been enrolled in [automatic updates from the original template](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Receiving-template-updates).

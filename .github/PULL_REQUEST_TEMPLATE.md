@@ -22,11 +22,7 @@
 
 - [ ] The new quiz has been added to the Book.txt file in the order it should be seen by the learner.
 
-- [ ] Spell check runs successfully (either using [Github actions style-n-check](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#spell-check) or [running manually](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#running-spell-check-and-styler-manually)).
-
-- [ ] Images are in the [correct format for rendering](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#adding-images-and-graphics-in-text).
-
-- [ ] Any images in these quizzes are described in the notes of the slide so learners relying on a screen reader can access the content. See https://lastcallmedia.com/blog/accessible-comics for more guidance on this.
+- [ ] Spell check runs successfully using [Github actions style-n-check](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/How-to-set-up-and-customize-GitHub-actions-robots#spell-check).
 
 - [ ] The color palette choices of the slide are contrasted in a way that is friendly to those with color vision deficiencies.
 You can check this using [Color Oracle](https://colororacle.org/).

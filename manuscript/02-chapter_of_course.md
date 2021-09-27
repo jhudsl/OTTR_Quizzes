@@ -57,7 +57,7 @@ hist_plot <- hist(iris$Sepal.Length)
 ```
 
 {width: "672", align: "middle",}
-![](resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png).
+![](resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png)
 
 You can also save these plots to file:
 
@@ -106,12 +106,12 @@ dev.off()
 How to include a Google slide. It's simplest to use the `leanbuild` package:
 
 {alt: "Major point!! example image", width: "100%", align: "middle",}
-![](resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png).
+![](resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png)
 
 But if you have the slide or some other image locally downloaded you can also use html like this:
 
 {alt: "Major point!! example image", width: "100%", align: "middle",}
-![](resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png).
+![](resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png)
 
 
 ### Video examples
@@ -124,19 +124,19 @@ knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
 ```
 
 {height: "400px", width: "672", align: "middle", type: "video", poster: "http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg",}
-![Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=VOCYL-FNbr0).
+![Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=VOCYL-FNbr0)
 
 OR this works:
 
 {height: "400px", width: "672", align: "middle", type: "video", poster: "http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg",}
-![Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=VOCYL-FNbr0).
+![Click on the lower right corner to expand the screen](https://www.youtube.com/watch?v=VOCYL-FNbr0)
 
 ### Links to files
 
 This works:
 
 {height: "800px", width: "672", align: "middle",}
-[Check out this link](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf).
+[Check out this link](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf)
 
 Or this:
 
@@ -145,7 +145,7 @@ Or this:
 Or this:
 
 {height: "800px", width: "672", align: "middle",}
-[Check out this link](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf).
+[Check out this link](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf)
 
 ### Links to websites
 
@@ -159,7 +159,7 @@ knitr::include_url("https://yihui.org")
 ```
 
 {height: "400px", width: "672", align: "middle",}
-[Check out this link](https://yihui.org).
+[Check out this link](https://yihui.org)
 
 OR this:
 
@@ -168,7 +168,7 @@ OR this:
 OR this:
 
 {height: "400px", width: "672", align: "middle",}
-[Check out this link](https://yihui.org).
+[Check out this link](https://yihui.org)
 
 ### Citation examples
 
@@ -211,9 +211,9 @@ sessionInfo()
 ## loaded via a namespace (and not attached):
 ##  [1] knitr_1.33      hms_0.5.3       R6_2.4.1        rlang_0.4.10   
 ##  [5] stringr_1.4.0   highr_0.8       httr_1.4.2      tools_4.0.2    
-##  [9] xfun_0.21       htmltools_0.5.0 ellipsis_0.3.1  yaml_2.2.1     
+##  [9] xfun_0.26       htmltools_0.5.0 ellipsis_0.3.1  yaml_2.2.1     
 ## [13] leanbuild_0.1.2 digest_0.6.25   tibble_3.0.3    lifecycle_1.0.0
-## [17] crayon_1.3.4    bookdown_0.20   readr_1.4.0     vctrs_0.3.4    
+## [17] crayon_1.3.4    bookdown_0.24   readr_1.4.0     vctrs_0.3.4    
 ## [21] curl_4.3        evaluate_0.14   rmarkdown_2.10  stringi_1.5.3  
 ## [25] compiler_4.0.2  pillar_1.4.6    pkgconfig_2.0.3
 ```

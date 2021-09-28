@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-
+    paths: [ manuscript/* ]
 jobs:
   reminder:
     runs-on: ubuntu-latest

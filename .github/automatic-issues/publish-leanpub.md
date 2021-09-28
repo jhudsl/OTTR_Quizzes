@@ -1,4 +1,4 @@
-Changes have been merged to `main`.
+Changes to the `manuscript` directory have been merged to `main`.
 
 **Don't forget to publish these changes to [Leanpub](https://leanpub.com/)**
 

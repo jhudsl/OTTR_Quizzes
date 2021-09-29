@@ -2,6 +2,7 @@
 
 This template repository includes all of the files that you need to get converting your Bookdown course that was set up from a [DaSL_Course_Template_Bookdown](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki) to a [Leanpub](https://leanpub.com/) course with quizzes.
 These repositories are separate so that the quizzes and answers can be kept private.
+
 If you haven't created a _Bookdown repository from this template, you should go to that [template repository's getting started Wiki](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started) and start there.
 
 <img src="https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=geb00d6af62_0_0" width="500" height="500"/>

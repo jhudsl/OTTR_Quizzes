@@ -21,5 +21,6 @@ For JHU courses, You will need to add Ira as a credit:
 |Content Publisher|[Ira Gooding](https://publichealth.jhu.edu/faculty/4130/ira-gooding)|
 
 -->
+
 *Please provide any feedback with [this form!](https://forms.gle/hc8Xt3Y2Znjb6M4Y7) We appreciate your thoughts.*
 

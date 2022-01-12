@@ -3,7 +3,7 @@ title: "Chapter of course"
 ---
 
 
-*If you haven't yet read the getting started Wiki pages; [start there](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started)
+*If you haven't yet read the getting started Wiki pages; [start there](https://github.com/jhudsl/OTTR_Template/wiki/Getting-started)
 
 Every chapter needs to start out with this chunk of code:
 
@@ -22,7 +22,7 @@ This chapter will cover:
 
 For this chapter, we'll need the following packages attached:
 
-*Remember to add [any additional packages you need to your course's own docker image](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Using-Docker#starting-a-new-docker-image).
+*Remember to add [any additional packages you need to your course's own docker image](https://github.com/jhudsl/OTTR_Template/wiki/Using-Docker#starting-a-new-docker-image).
 
 
 ```r

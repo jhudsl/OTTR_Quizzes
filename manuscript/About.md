@@ -4,7 +4,7 @@ title: "About"
 
 # About the Authors
 
-These credits are based on our [course contributors table guidelines](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/How-to-give-credits).
+These credits are based on our [course contributors table guidelines](https://github.com/jhudsl/OTTR_Template/wiki/How-to-give-credits).
 
 |Credits|Names|
 |-------|-----|
@@ -14,7 +14,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 |Technical Publishing Stylist|[Carrie Wright](https://carriewright11.github.io/), [Candace Savonen](https://www.cansavvy.com/)|
 |Packages|[John Muschelli](https://johnmuschelli.com/), [Candace Savonen](https://www.cansavvy.com/), [Carrie Wright](https://carriewright11.github.io/)|
 
-<!-- Fill out this table using these instructions: https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/How-to-give-credits
+<!-- Fill out this table using these instructions: https://github.com/jhudsl/OTTR_Template/wiki/How-to-give-credits
 
 For JHU courses, You will need to add Ira as a credit:
 

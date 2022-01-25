@@ -8,7 +8,7 @@ on:
     branches: [ main ]
 
 jobs:
-  sp-check:
+  check-quizzes:
     runs-on: ubuntu-latest
     container:
       image: jhudsl/course_template

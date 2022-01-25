@@ -49,7 +49,7 @@ jobs:
           else
             git checkout -b $branch_name
           fi
-          git add --force resources/spell_check_results.tsv
+          git add --force spell_check_results.tsv
           git commit -m 'Add spell check file'
           git push --force --set-upstream origin $branch_name
 

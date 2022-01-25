@@ -41,6 +41,7 @@ jobs:
         run: |
           branch_name='check-${{ github.event.pull_request.number }}'
           git rev-parse --quiet --verify $branch_name >/dev/null && exists=true || exists=false
+          echo $exists
           if $exists == true
           then
             git checkout $branch_name

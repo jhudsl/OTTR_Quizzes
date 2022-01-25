@@ -40,6 +40,7 @@ jobs:
       - name: Spell check errors
         run: |
           branch_name='check-${{ github.event.pull_request.number }}'
+          git fetch --all
           git rev-parse --quiet --verify $branch_name >/dev/null && exists=true || exists=false
           echo $exists
           if $exists == true

@@ -44,7 +44,7 @@ jobs:
           git add --force question_error_report.tsv
           git commit -m 'Add question error report file'
           if $exists; then git pull --set-upstream origin $branch_name --allow-unrelated-histories; fi
-          git push --set-upstream origin $branch_name
+          git push --force --set-upstream origin $branch_name
 
       - name: Build components of the quiz check comment
         id: build-components

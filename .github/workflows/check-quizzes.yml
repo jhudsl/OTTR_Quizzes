@@ -29,12 +29,7 @@ jobs:
         id: quiz_check_run
         run: |
           Rscript -e "leanbuild::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
-          echo ::set-output name=quiz_chk_results::$(wc -l < question_error_report.
-tsv)
-          docker run \
-          --mount type=bind,target=/home/rstudio,source=$PWD \
-          jhudsl/course_template \
-          Rscript -e "leanbuild::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
+          echo ::set-output name=quiz_chk_results::$(wc -l < question_error_report.tsv)
 
       - name: Quiz check errors
         run: |

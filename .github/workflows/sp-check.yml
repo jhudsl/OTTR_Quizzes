@@ -46,10 +46,10 @@ jobs:
             git checkout $branch_name
           else
             git checkout -b $branch_name
+            git push --set-upstream origin $branch_name
           fi
           git add --force spell_check_results.tsv
           git commit -m 'Add spell check file'
-          if $exists; then git pull --rebase --set-upstream origin $branch_name --allow-unrelated-histories; fi
           git pull --rebase --set-upstream origin $branch_name --allow-unrelated-histories
           git push origin $branch_name
 

@@ -40,10 +40,10 @@ jobs:
             git checkout $branch_name
           else
             git checkout -b $branch_name
+            git push --set-upstream origin $branch_name
           fi
           git add --force question_error_report.tsv
           git commit -m 'Add question error report file'
-          if $exists; then git pull --rebase --set-upstream origin $branch_name --allow-unrelated-histories; fi
           git pull --rebase --set-upstream origin $branch_name --allow-unrelated-histories
           git push origin $branch_name
 

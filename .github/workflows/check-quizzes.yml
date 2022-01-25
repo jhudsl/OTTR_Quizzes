@@ -44,7 +44,9 @@ jobs:
 
       - name: Commit quiz check errors
         run: |
-          changes=$(git diff --name-only -- question_error_report.tsv)
+          branch_name='check-${{ github.event.pull_request.number }}'
+          changes=$(git diff $branch_name origin/main -- question_error_report.tsv)
+
           if -z $changes
           then
             echo 'No quiz errors to commit'

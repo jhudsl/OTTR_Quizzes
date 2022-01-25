@@ -27,8 +27,9 @@ jobs:
 
       - name: Run quiz check
         id: quiz_check_run
-        run: leanbuild::check_quizzes(quiz_dir = "quizzes", write_report = TRUE, verbose = TRUE)
-        shell: Rscript {0}
+        run: |
+          Rscript -e "leanbuild::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
+          echo ::set-output name=quiz_chk_results::$(cat question_error_report.tsv)
 
       - name: Quiz check errors
         run: |
@@ -51,7 +52,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          quiz_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/question_error_report.tsv
+          quiz_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/question_error_report.tsv
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=quiz_error_url::$quiz_error_url

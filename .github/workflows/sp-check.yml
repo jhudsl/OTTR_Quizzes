@@ -44,14 +44,14 @@ jobs:
           if $exists == true
           then
             git checkout $branch_name
-            git pull --set-upstream origin $branch_name --allow-unrelated-histories
           else
             git checkout -b $branch_name
           fi
           git add --force spell_check_results.tsv
           git commit -m 'Add spell check file'
           if $exists; then git pull --rebase --set-upstream origin $branch_name --allow-unrelated-histories; fi
-          git push --set-upstream origin $branch_name
+          git pull --rebase --set-upstream origin $branch_name --allow-unrelated-histories
+          git push origin $branch_name
 
       - name: Build components of the spell check comment
         id: build-components

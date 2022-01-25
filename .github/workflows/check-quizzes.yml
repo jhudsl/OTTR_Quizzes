@@ -44,11 +44,17 @@ jobs:
 
       - name: Commit quiz check errors
         run: |
-          branch_name='check-${{ github.event.pull_request.number }}'
-          git add --force question_error_report.tsv
-          git commit -m 'Add question error report file'
-          git pull --set-upstream origin $branch_name --allow-unrelated-histories
-          git push origin $branch_name
+          changes=$(git diff --name-only -- docs)
+          if -z $changes
+          then
+            echo 'No quiz errors to commit'
+          else
+            branch_name='check-${{ github.event.pull_request.number }}'
+            git add --force question_error_report.tsv
+            git commit -m 'Add question error report file'
+            git pull --set-upstream origin $branch_name --allow-unrelated-histories
+            git push origin $branch_name
+          fi
 
       - name: Build components of the quiz check comment
         id: build-components

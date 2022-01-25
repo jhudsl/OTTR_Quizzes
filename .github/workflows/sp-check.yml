@@ -54,10 +54,7 @@ jobs:
           branch_name='check-${{ github.event.pull_request.number }}'
           git diff $branch_name origin/main -- spell_check_results.tsv >/dev/null && changes=true || changes=false
           echo $changes
-          if -z $changes;
-          then
-            echo 'No spelling errors to commit'
-          else
+          if $changes == true; then
             branch_name='check-${{ github.event.pull_request.number }}'
             git add --force spell_check_results.tsv
             git commit -m 'Add spell check file'
@@ -65,7 +62,7 @@ jobs:
             git push origin $branch_name
           fi
         shell: bash
-        
+
       - name: Build components of the spell check comment
         id: build-components
         env:

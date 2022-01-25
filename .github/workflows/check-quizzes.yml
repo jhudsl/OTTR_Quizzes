@@ -44,7 +44,7 @@ jobs:
 
       - name: Commit quiz check errors
         run: |
-          changes=$(git diff --name-only -- docs)
+          changes=$(git diff --name-only -- question_error_report.tsv)
           if -z $changes
           then
             echo 'No quiz errors to commit'

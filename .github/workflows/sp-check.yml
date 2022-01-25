@@ -50,7 +50,7 @@ jobs:
 
       - name: Commit spell check errors
         run: |
-          changes=$(git diff --name-only -- docs)
+          changes=$(git diff --name-only -- spell_check_results.tsv)
           if -z $changes
           then
             echo 'No spelling errors to commit'

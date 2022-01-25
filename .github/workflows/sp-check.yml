@@ -50,7 +50,7 @@ jobs:
           fi
           git add --force spell_check_results.tsv
           git commit -m 'Add spell check file'
-          if $exists; then git pull --set-upstream origin $branch_name --allow-unrelated-histories fi
+          if $exists; then git pull --set-upstream origin $branch_name --allow-unrelated-histories; fi
           git push --set-upstream origin $branch_name
 
       - name: Build components of the spell check comment

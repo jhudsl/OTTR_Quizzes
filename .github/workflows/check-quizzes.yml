@@ -32,7 +32,6 @@ jobs:
 
       - name: Quiz check errors
         run: |
-          # Get on the spell check branch if it exists. If it doesn't create it.
           branch_name='check-${{ github.event.pull_request.number }}'
           git rev-parse --quiet --verify $branch_name >/dev/null && exists=true || exists=false
           if $exists == true
@@ -46,7 +45,7 @@ jobs:
           git commit -m 'Add question error report file'
           git push --force --set-upstream origin $branch_name
 
-      - name: Build components of the spell check comment
+      - name: Build components of the quiz check comment
         id: build-components
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
@@ -64,9 +63,9 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: 'github-actions[bot]'
-          body-includes: spelling errors
+          body-includes: quiz errors
 
-      - name: Spelling errors!
+      - name: Quiz errors!
         if: ${{ steps.quiz_check_run.outputs.quiz_chk_results >= 3 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
@@ -78,7 +77,7 @@ jobs:
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
 
-      - name: Check spell check results - fail if too many errors
+      - name: Check quiz check results - fail if too many errors
         if: ${{ steps.quiz_check_run.outputs.quiz_chk_results >= 3 }}
         run: exit 1
 
@@ -89,6 +88,6 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            No spelling errors! :tada:
+            No quiz errors detected! :tada:
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace

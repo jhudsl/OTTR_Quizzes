@@ -52,7 +52,7 @@ jobs:
           fi
           git add --force spell_check_results.tsv
           git commit -m 'Add spell check file'
-          git pull --rebase --set-upstream origin $branch_name --allow-unrelated-histories
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories
           git push origin $branch_name
 
       - name: Build components of the spell check comment

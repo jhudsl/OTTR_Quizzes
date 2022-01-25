@@ -29,7 +29,12 @@ jobs:
         id: quiz_check_run
         run: |
           Rscript -e "leanbuild::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
-          echo ::set-output name=quiz_chk_results::$(cat question_error_report.tsv)
+          echo ::set-output name=quiz_chk_results::$(wc -l < question_error_report.
+tsv)
+          docker run \
+          --mount type=bind,target=/home/rstudio,source=$PWD \
+          jhudsl/course_template \
+          Rscript -e "leanbuild::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
 
       - name: Quiz check errors
         run: |
@@ -67,7 +72,7 @@ jobs:
           body-includes: quiz errors
 
       - name: Quiz errors!
-        if: ${{ steps.quiz_check_run.outputs.quiz_chk_results >= 3 }}
+        if: ${{ steps.quiz_check_run.outputs.quiz_chk_results >= 1 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -79,11 +84,11 @@ jobs:
           edit-mode: replace
 
       - name: Check quiz check results - fail if too many errors
-        if: ${{ steps.quiz_check_run.outputs.quiz_chk_results >= 3 }}
+        if: ${{ steps.quiz_check_run.outputs.quiz_chk_results >= 1 }}
         run: exit 1
 
       - name: No quiz errors
-        if: ${{ steps.quiz_check_run.outputs.quiz_chk_results < 3 }}
+        if: ${{ steps.quiz_check_run.outputs.quiz_chk_results < 1 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}

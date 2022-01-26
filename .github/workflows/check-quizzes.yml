@@ -52,7 +52,7 @@ jobs:
             echo $changes
             if $changes == true; then
               git add --force question_error_report.tsv
-              git commit -m 'Add question error report file'
+              git commit -m 'Add question error report file' >/dev/null
               git pull --set-upstream origin $branch_name --allow-unrelated-histories
               git push origin $branch_name
             fi

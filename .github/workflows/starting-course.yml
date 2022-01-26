@@ -46,21 +46,19 @@ jobs:
 
       # Commit modified files
       - name: Commit deleted files
+        id: commit_it
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
           git commit -m "Template cleanup"
-
-      # Push changes
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          branch: main
+          pushed_it=true
+          git push || pushed_it=false
+          echo ::set-output name=pushed_it::$pushed_it
 
       # If main is already protected, then file a PR
       - name: Create PR with deleted files
-        if: ${{ failure() }}
+        if: steps.commit_it.outputs.pushed_it == 'false'
         uses: peter-evans/create-pull-request@v3
         id: pr
         with:

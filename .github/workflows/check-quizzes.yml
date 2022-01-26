@@ -32,7 +32,6 @@ jobs:
             git checkout $branch_name
           else
             git checkout -b $branch_name
-            git push --set-upstream origin $branch_name
           fi
 
       - name: Run quiz check

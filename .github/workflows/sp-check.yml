@@ -29,6 +29,7 @@ jobs:
           echo $exists
           if $exists == true
           then
+            git fetch
             git checkout $branch_name
             git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
           else

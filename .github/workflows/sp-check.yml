@@ -34,7 +34,6 @@ jobs:
             git checkout -b $branch_name
             git push --set-upstream origin $branch_name
           fi
-        shell: bash
 
       - name: Run spell check
         id: spell_check_run
@@ -63,7 +62,6 @@ jobs:
               git push --force origin $branch_name
             fi
           fi
-        shell: bash
 
       - name: Build components of the spell check comment
         id: build-components

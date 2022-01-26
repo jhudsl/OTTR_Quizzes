@@ -34,7 +34,6 @@ jobs:
             git checkout -b $branch_name
             git push --set-upstream origin $branch_name
           fi
-        shell: bash
 
       - name: Run quiz check
         id: quiz_check_run
@@ -57,7 +56,6 @@ jobs:
               git push origin $branch_name
             fi
           fi
-        shell: bash
 
       - name: Build components of the quiz check comment
         id: build-components

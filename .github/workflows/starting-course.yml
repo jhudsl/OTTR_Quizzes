@@ -57,7 +57,6 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           branch: main
-          github_token: ${{ secrets.GH_PAT }}
 
       # If main is already protected, then file a PR
       - name: Create PR with deleted files
@@ -65,7 +64,6 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         id: pr
         with:
-          token: ${{ secrets.GH_PAT }}
           commit-message: Delete unnecessary files
           signoff: false
           branch: auto_copy_rendered_files
@@ -74,7 +72,7 @@ jobs:
           body: |
             ### Description:
              This PR was initiated by the github actions. It helps set up this repository to be ready to write your course.
-             It deletes some remnant files you don't need for your course but were used when this was a template. 
+             It deletes some remnant files you don't need for your course but were used when this was a template.
           labels: |
             automated
           reviewers: $GITHUB_ACTOR

@@ -19,20 +19,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run spell check
-        id: spell_check_run
-        run: |
-          results=$(Rscript "scripts/spell-check.R")
-          echo ::set-output name=sp_chk_results::$results
-          wc -l < spell_check_results.tsv
-          cat spell_check_results.tsv
-
-      - name: Archive spelling errors
-        uses: actions/upload-artifact@v2
-        with:
-          name: spell-check-results
-          path: spell_check_results.tsv
-
       - name: Configure git
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"
@@ -47,7 +33,21 @@ jobs:
           else
             git checkout -b $branch_name
           fi
-          
+
+      - name: Run spell check
+        id: spell_check_run
+        run: |
+          results=$(Rscript "scripts/spell-check.R")
+          echo ::set-output name=sp_chk_results::$results
+          wc -l < spell_check_results.tsv
+          cat spell_check_results.tsv
+
+      - name: Archive spelling errors
+        uses: actions/upload-artifact@v2
+        with:
+          name: spell-check-results
+          path: spell_check_results.tsv
+
       - name: Commit spell check errors
         run: |
           echo $steps.spell_check_run.outputs.sp_chk_results

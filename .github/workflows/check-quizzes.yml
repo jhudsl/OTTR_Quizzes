@@ -20,12 +20,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run quiz check
-        id: quiz_check_run
-        run: |
-          Rscript -e "leanbuild::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
-          echo ::set-output name=quiz_chk_results::$(wc -l < question_error_report.tsv)
-
       - name: Configure git
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"
@@ -39,7 +33,13 @@ jobs:
           else
             git checkout -b $branch_name
           fi
-          
+
+      - name: Run quiz check
+        id: quiz_check_run
+        run: |
+          Rscript -e "leanbuild::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
+          echo ::set-output name=quiz_chk_results::$(wc -l < question_error_report.tsv)
+
       - name: Commit quiz check errors
         run: |
           branch_name='check-${{ github.event.pull_request.number }}'

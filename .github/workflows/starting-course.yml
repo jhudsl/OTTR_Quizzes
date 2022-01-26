@@ -30,7 +30,7 @@ jobs:
             .github/workflows/send-updates.yml \
             .github/sync.yml \
             .github/workflows/starting-course.yml \
-            .github/ISSUE_TEMPLATE/issue_template.md
+            .github/ISSUE_TEMPLATE/issue_template.md \
             resources/code_output \
             resources/screenshots \
             resources/course_screenshots \
@@ -38,10 +38,10 @@ jobs:
             resources/*.png \
             resources/images/* \
             docs/*.html \
-            docs/*.md
-            manuscript/*
-            quizzes/quiz_bad.md
-            *.Rmd
+            docs/*.md \
+            manuscript/* \
+            quizzes/quiz_bad.md \
+            *.Rmd \
             book.bib
 
       # Commit modified files

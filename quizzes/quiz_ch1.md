@@ -16,7 +16,7 @@ o) An optional incorrect answer here marked with an "o"
 o) A second optional incorrect answer here
 
 {choose-answers: 4}
-? Question example with just a question mark ahgweyugaw agweyufg wegfyweg?
+? Question example with just a question mark?
 
 C) One correct answer here marked with a "C"
 C) A second correct answer here
@@ -26,7 +26,7 @@ o) An optional incorrect answer here marked with an "o"
 o) A second optional incorrect answer here
 
 {choose-answers: 4}
-? Second question to ask goes here.?
+? Second question to ask goes here?
 
 C) One correct answer here marked with a "C"
 C) A second correct answer here
@@ -37,7 +37,7 @@ o) A second optional incorrect answer here
 
 
 {choose-answers: 4}
-? A more complicated example. Note the quetion mark at the end of the options! Which of the following are correct:
+? A more complicated example. Note the question mark at the end of the options! Which of the following are correct:
 1. An option described
 2. A second option
 3. A third option

@@ -49,7 +49,7 @@ jobs:
           echo $changes
           if $changes == true; then
             branch_name='check-${{ github.event.pull_request.number }}'
-            git diff -- question_error_report.tsv >/dev/null && changes=false || changes=true
+            git diff -- question_error_report.tsv >/dev/null && changes=true || changes=false
             echo $changes
             if $changes == true; then
               git add --force question_error_report.tsv
@@ -81,7 +81,7 @@ jobs:
           body-includes: quiz errors
 
       - name: Quiz errors!
-        if: ${{ steps.quiz_check_run.outputs.quiz_chk_results >= 1 }}
+        if: ${{ steps.quiz_check_run.outputs.quiz_chk_results >= 2 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -93,11 +93,11 @@ jobs:
           edit-mode: replace
 
       - name: Check quiz check results - fail if too many errors
-        if: ${{ steps.quiz_check_run.outputs.quiz_chk_results >= 1 }}
+        if: ${{ steps.quiz_check_run.outputs.quiz_chk_results >= 2 }}
         run: exit 1
 
       - name: No quiz errors
-        if: ${{ steps.quiz_check_run.outputs.quiz_chk_results < 1 }}
+        if: ${{ steps.quiz_check_run.outputs.quiz_chk_results < 2 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}

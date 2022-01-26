@@ -40,8 +40,7 @@ jobs:
         id: spell_check_run
         run: |
           results=$(Rscript "scripts/spell-check.R")
-          echo "::set-output name=sp_chk_results::$results"
-          cat spell_check_results.tsv
+          echo ::set-output name=sp_chk_results::$(wc -l < spell_check_results.tsv)
 
       - name: Archive spelling errors
         uses: actions/upload-artifact@v2
@@ -56,7 +55,7 @@ jobs:
           echo $changes
           if $changes == true; then
             branch_name='check-${{ github.event.pull_request.number }}'
-            git diff -- spell_check_results.tsv >/dev/null && changes=false || changes=true
+            git diff -- spell_check_results.tsv >/dev/null && changes=true || changes=false
             echo $changes
             if $changes == true; then
               git add --force spell_check_results.tsv

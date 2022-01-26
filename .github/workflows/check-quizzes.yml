@@ -50,6 +50,7 @@ jobs:
           if $changes == true; then
             branch_name='check-${{ github.event.pull_request.number }}'
             git diff -- question_error_report.tsv >/dev/null && changes=true || changes=false
+            echo $changes
             if $changes == true; then
               git add --force question_error_report.tsv
               git commit -m 'Add question error report file'

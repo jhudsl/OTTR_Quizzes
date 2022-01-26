@@ -53,7 +53,7 @@ jobs:
           git add .
           git commit -m "Template cleanup"
           pushed_it=true
-          git push main || pushed_it=false
+          git push || pushed_it=false
           echo ::set-output name=pushed_it::$pushed_it
 
       # If main is already protected, then file a PR

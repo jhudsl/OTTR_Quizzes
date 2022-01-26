@@ -57,7 +57,7 @@ jobs:
             echo $changes
             if $changes == true; then
               git add --force spell_check_results.tsv
-              git commit -m 'Add spell check file' >/dev/null
+              git diff-index --quiet HEAD || git commit -m 'Add spell check file' 
               git pull --set-upstream origin $branch_name --allow-unrelated-histories
               git push --force origin $branch_name
             fi

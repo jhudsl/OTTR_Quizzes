@@ -71,8 +71,8 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          branch_name='preview-${{ github.event.pull_request.number }}'
-          sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/spell_check_results.tsv
+          branch_name='check-${{ github.event.pull_request.number }}'
+          sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/spell_check_results.tsv
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=sp_error_url::$sp_error_url

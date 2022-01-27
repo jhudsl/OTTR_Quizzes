@@ -6,6 +6,7 @@ group:
   repos: |
     jhudsl/Documentation_and_Usability_Quizzes
     broadinstitute/dsp-terra-mooc-intro_Quizzes
+    jhudsl/Computing_for_Cancer_Informatics_Leanpub
 
 #ADD NEW REPO HERE following the format above#
   # Files which should be updated

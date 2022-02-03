@@ -29,22 +29,22 @@ jobs:
           # use github PAT
           token: ${{ secrets.GH_PAT }}
 
-#      # Run leanbuild checks
-#      - name: Run leanbuild checks
+#      # Run ottr checks
+#      - name: Run ottr checks
 #        run: |
 #          docker run \
 #          --mount type=bind,target=/home/rstudio,source=$PWD \
 #          jhudsl/course_template \
-#          Rscript --vanilla scipts/leanbuild_checks.R
+#          Rscript --vanilla scipts/ottr_checks.R
 
       # Run leanpub rendering
-      - name: Run leanbuild::bookdown_to_leanpub
+      - name: Run ottr::bookdown_to_leanpub
         run: |
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
           jhudsl/course_template \
-          Rscript -e "leanbuild::bookdown_to_leanpub(footer_text = '*Please provide any feedback with [this form!](https://forms.gle/hc8Xt3Y2Znjb6M4Y7) We appreciate your thoughts.*');
-          leanbuild::render_coursera(convert_quizzes = TRUE)"
+          Rscript -e "ottr::bookdown_to_leanpub(footer_text = '*Please provide any feedback with [this form!](https://forms.gle/hc8Xt3Y2Znjb6M4Y7) We appreciate your thoughts.*');
+          ottr::render_coursera(convert_quizzes = TRUE)"
 
       # Commit the rendered leanpub files
       - name: Commit rendered leanpub files

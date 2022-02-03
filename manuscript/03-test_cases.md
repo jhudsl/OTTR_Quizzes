@@ -95,7 +95,7 @@ knitr::include_url("https://www.youtube.com/watch?v=9bZkp7q19f0?rel=0")
 
 ```r
 # define GS_ID
-leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
+ottr::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
 ```
 
 ![](resources/images/03-test_cases_files/figure-html//12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png)<!-- -->
@@ -103,7 +103,7 @@ leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal
 
 ```r
 # define GS_ID
-leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
+ottr::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
 ```
 
 {alt: "picture of stuff", width: "100%", align: "middle"}

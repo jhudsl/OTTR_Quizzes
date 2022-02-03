@@ -3,7 +3,7 @@
 
 root_dir <- rprojroot::find_root(rprojroot::has_file("_bookdown.yml"))
 
-rmd_files <- leanbuild::get_bookdown_spec(root_dir)$rmd_files
+rmd_files <- ottr::get_bookdown_spec(root_dir)$rmd_files
 
 needed_files <-
   c(rmd_files, 
@@ -14,6 +14,6 @@ needed_files <-
     "assets",
     "quizzes")
 
-writeLines(needed_files, file.path(root_dir, "resources", "needed_leanbuild_files.txt"))
+writeLines(needed_files, file.path(root_dir, "resources", "needed_ottr_files.txt"))
 
 zip("example-repo.zip", files = needed_files)

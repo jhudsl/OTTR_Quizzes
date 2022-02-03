@@ -84,7 +84,7 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 ### Image example
 
 
-How to include a Google slide. It's simplest to use the `leanbuild` package:
+How to include a Google slide. It's simplest to use the `ottr` package:
 
 <img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
 
@@ -207,7 +207,7 @@ devtools::session_info()
 ##  jsonlite      1.7.1      2020-09-07 [1]
 ##  knitr         1.33       2021-08-31 [1]
 ##  labeling      0.3        2014-08-23 [1]
-##  leanbuild     0.1.2      2021-08-31 [1]
+##  ottr     0.1.2      2021-08-31 [1]
 ##  lifecycle     1.0.0      2021-02-15 [1]
 ##  magrittr    * 1.5        2014-11-22 [1]
 ##  MASS          7.3-51.6   2020-04-26 [2]
@@ -282,7 +282,7 @@ devtools::session_info()
 ##  RSPM (R 4.0.2)                          
 ##  Github (yihui/knitr@a1052d1)            
 ##  RSPM (R 4.0.0)                          
-##  Github (jhudsl/leanbuild@769c2aa)       
+##  Github (jhudsl/ottr@769c2aa)       
 ##  CRAN (R 4.0.2)                          
 ##  RSPM (R 4.0.0)                          
 ##  CRAN (R 4.0.2)                          

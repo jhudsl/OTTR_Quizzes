@@ -1,8 +1,0 @@
-leanpub_ready_index.md
-leanpub_ready_01-intro.md
-leanpub_ready_quiz_ch1.md
-leanpub_ready_02-chapter_of_course.md
-leanpub_ready_03-test_cases.md
-leanpub_ready_04-figures.md
-leanpub_ready_about.md
-leanpub_ready_references.md

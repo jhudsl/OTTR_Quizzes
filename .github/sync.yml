@@ -4,6 +4,8 @@
 group:
   # Repositories to receive changes
   repos: |
+    jhudsl/Reproducibility_in_Cancer_Informatics
+    jhudsl/Adv_Reproducibility_in_Cancer_Informatics
     jhudsl/Documentation_and_Usability_Quizzes
     broadinstitute/dsp-terra-mooc-intro_Quizzes
     jhudsl/Computing_for_Cancer_Informatics_Leanpub

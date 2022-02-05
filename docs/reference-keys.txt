@@ -1,5 +1,8 @@
 introduction
 motivation
+target-audience
+curriculum
+a-new-chapter
 learning-objectives
 libraries
 topic-of-section
@@ -10,5 +13,6 @@ video-examples
 links-to-files
 links-to-websites
 citation-examples
+fyi-boxes
+dropdown-summaries
 print-out-session-info
-about-the-authors

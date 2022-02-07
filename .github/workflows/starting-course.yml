@@ -42,7 +42,8 @@ jobs:
             manuscript/* \
             quizzes/quiz_bad.md \
             *.Rmd \
-            book.bib
+            book.bib \
+            manuscript/*
 
       # Commit modified files
       - name: Commit deleted files

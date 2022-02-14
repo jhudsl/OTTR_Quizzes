@@ -1,21 +1,16 @@
 
 # Jan 2022 Candace Savonen
 
-name: Render and publish Leanpub
+name: Render Leanpub
 
 on:
   workflow_dispatch:
-### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE FOR LEANPUB AUTOMATICALLY
-    # workflows: [ "Render Bookdown and Coursera" ]
-    # branches: [ main ]
-    # types:
-    #   - completed
-    # paths:
-    #   - '**.Rmd'
-    #   - docker/*
-    #   - assets/*
-    #   - quizzes/*
-######### END OF SECTION #########
+  push:
+    branches: [ main ]
+    types:
+      - completed
+    paths:
+      - resources/chapt_screen_images/*
 
 jobs:
   # This workflow contains a single job called "build-all"
@@ -35,18 +30,12 @@ jobs:
           # use github PAT
           token: ${{ secrets.GH_PAT }}
 
-      # Run leanpub rendering
-      - name: Run the screenshot creation
-        run: |
-          chapt_urls=$(Rscript --vanilla scripts/make_screenshots.R \
-            --git_pat ${{ secrets.GH_PAT }} \
-            --repo $GITHUB_REPOSITORY)
-
       # Run Leanpub rendering
       - name: Run ottr::bookdown_to_embed_leanpub
         run: |
           rm -rf manuscript
           Rscript -e "ottr::bookdown_to_embed_leanpub( \
+            render = FALSE, \
             chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
             make_book_txt = TRUE)"
 

@@ -1,5 +1,0 @@
-index.Rmd
-01-intro.Rmd
-02-chapter_of_course.Rmd
-About.Rmd
-References.Rmd

@@ -1,15 +1,15 @@
 
 # Candace Savonen Apr 2021
 
-name: Render all output courses
+name: Render output for courses
 
 on:
   workflow_dispatch:
   push:
     branches: [ main, staging ]
     paths:
-      - '**.Rmd'
-      - assets/*
+      - quizzes/*
+      - resources/*
 
 jobs:
 

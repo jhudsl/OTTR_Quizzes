@@ -17,8 +17,10 @@ jobs:
     steps:
 
       # Check out current repository
-      - name: Fetch current branch
+      - name: checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
 ##### Delete Template-specific files that aren't needed for new courses
 

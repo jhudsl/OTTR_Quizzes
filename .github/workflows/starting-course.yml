@@ -17,8 +17,10 @@ jobs:
     steps:
 
       # Check out current repository
-      - name: Fetch current branch
+      - name: checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
 ##### Delete Template-specific files that aren't needed for new courses
 
@@ -28,22 +30,20 @@ jobs:
           # Cleanup
           rm -rf \
             .github/workflows/send-updates.yml \
+            .github/workflows/test-send-updates.yml \
             .github/sync.yml \
+            .github/test-sync.yml \
             .github/workflows/starting-course.yml \
             .github/ISSUE_TEMPLATE/issue_template.md \
+            resources/chapt_screen_images/* \
             resources/code_output \
             resources/screenshots \
             resources/course_screenshots \
             resources/gs_slides \
             resources/*.png \
             resources/images/* \
-            docs/*.html \
-            docs/*.md \
             manuscript/* \
             quizzes/quiz_bad.md \
-            *.Rmd \
-            book.bib \
-            manuscript/*
 
       # Commit modified files
       - name: Commit deleted files

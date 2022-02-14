@@ -13,24 +13,11 @@ group:
 #ADD NEW REPO HERE following the format above#
   # Files which should be updated
   files:
-    - source: .github/workflows/render-leanpub.yml
-      dest: .github/workflows/render-leanpub.yml
-    - source: .github/workflows/check-quizzes.yml
-      dest: .github/workflows/check-quizzes.yml
-    - source: .github/workflows/sp-check.yml
-      dest: .github/workflows/sp-check.yml
-    - source: .github/workflows/url-checker.yml
-      dest: .github/workflows/url-checker.yml
-    - source: .github/workflows/release-notes.yml
-      dest: .github/workflows/release-notes.yml
-    - source: .github/workflows/release-notes.yml
-      dest: .github/workflows/release-notes.yml
-    - source: .github/workflows/ISSUE_TEMPLATES/issue_template.md
-      dest: .github/workflows/ISSUE_TEMPLATES/issue_template.md
+    - source: .github/workflows/
+      dest: .github/workflows/
+      deleteOrphaned: true
     - source: scripts/spell-check.R
       dest: scripts/spell-check.R
-    - source: scripts/get_rmd_filenames.R
-      dest: scripts/get_rmd_filenames.R
     - source: scripts/make_screenshots.R
       dest: scripts/make_screenshots.R
 

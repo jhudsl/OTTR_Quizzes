@@ -39,12 +39,8 @@ jobs:
 
     outputs:
       toggle_spell_check: "${{ env.SPELL_CHECK }}"
-      toggle_style_code: "${{ env.STYLE_CODE }}"
       toggle_url_check: "${{ env.URL_CHECKER }}"
       toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
-      toggle_render_preview: "${{ env.RENDER_PREVIEW }}"
-      toggle_docker_build: "${{ env.DOCKER_BUILD }}"
-      dockerfiles_changed: steps.verify-changed-files.outputs.files_changed
 
   spell-check:
     name: Check spelling

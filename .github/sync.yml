@@ -16,6 +16,10 @@ group:
     - source: .github/workflows/
       dest: .github/workflows/
       deleteOrphaned: true
+      exclude: |
+        send-updates.yml
+        test-send-updates.yml
+        starting-course.yml 
     - source: scripts/spell-check.R
       dest: scripts/spell-check.R
     - source: scripts/make_screenshots.R

@@ -13,13 +13,15 @@ group:
 #ADD NEW REPO HERE following the format above#
   # Files which should be updated
   files:
+    - source: config_automation.yml
+      dest: config_automation.yml
     - source: .github/workflows/
       dest: .github/workflows/
       deleteOrphaned: true
       exclude: |
         send-updates.yml
         test-send-updates.yml
-        starting-course.yml 
+        starting-course.yml
     - source: scripts/spell-check.R
       dest: scripts/spell-check.R
     - source: scripts/make_screenshots.R

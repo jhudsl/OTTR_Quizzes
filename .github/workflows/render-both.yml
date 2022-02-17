@@ -31,7 +31,7 @@ jobs:
 
   render-leanpub:
     name: Finish Leanpub prep
-    needs: [yaml-check, render-tocless]
+    needs: [yaml-check]
     runs-on: ubuntu-latest
     container:
       image: jhudsl/course_template:main
@@ -71,7 +71,7 @@ jobs:
 
   render-coursera:
     name: Finish Coursera prep
-    needs: [yaml-check, render-tocless]
+    needs: [yaml-check]
     runs-on: ubuntu-latest
     container:
       image: jhudsl/course_template:main

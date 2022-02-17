@@ -1,13 +1,13 @@
-# Candace Savonen Jan 2022
+# Candace Savonen Apr 2021
 
-name: Delete Check Branch
+name: Delete Preview
 
 on:
   pull_request:
     types: [closed]
 
 jobs:
-  build-all:
+  delete-preview:
     runs-on: ubuntu-latest
     steps:
 

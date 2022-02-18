@@ -63,11 +63,13 @@ jobs:
 
       # Commit the rendered leanpub files
       - name: Commit rendered leanpub files
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
+          git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git add --force manuscript/*
           git commit -m 'Render Leanpub' || echo "No changes to commit"
+          git pull --allow-unrelated-histories --strategy-option=theirs
           git push --force origin main || echo "No changes to push"
 
   render-coursera:
@@ -103,11 +105,13 @@ jobs:
           echo Coursera status ${{steps.coursera.outcome}}
           exit 1
 
-      # Commit the rendered bookdown files
+      # Commit the rendered Coursera files
       - name: Commit rendered Coursera files
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
+          git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git add --force docs/coursera/*
           git commit -m 'Render Coursera quizzes' || echo "No changes to commit"
+          git pull --allow-unrelated-histories --strategy-option=theirs
           git push origin main || echo "No changes to push"

@@ -111,7 +111,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
-          git add --force docs/coursera/*
+          git add --force coursera_quizzes/*
           git commit -m 'Render Coursera quizzes' || echo "No changes to commit"
           git pull --allow-unrelated-histories --strategy-option=theirs
           git push origin main || echo "No changes to push"

@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          
+
         # Use the yaml-env-action action.
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
@@ -85,7 +85,7 @@ jobs:
       - name: Commit spell check errors
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git add --force resources/spell_check_results.tsv
+          git add --force resources/spell_check_results.tsv || echo "No changes to commit"
           git commit -m 'Add spell check file' || echo "No changes to commit"
           git pull --set-upstream origin $branch_name --allow-unrelated-histories
           git push --force origin $branch_name || echo "No changes to commit"

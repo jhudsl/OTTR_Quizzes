@@ -74,9 +74,9 @@ jobs:
         run: |
           results=$(Rscript "scripts/spell-check.R")
           echo "::set-output name=sp_chk_results::$results"
-          cat resources/spell_check_results.tsv
 
       - name: Archive spelling errors
+        if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
         uses: actions/upload-artifact@v2
         with:
           name: spell-check-results

@@ -1,7 +1,7 @@
 
 ##### Checks run at pull request #####
 # Check quiz formatting
-check-quizzes: no
+check-quizzes: yes
 # Check that urls in the content are not broken
 url-checker: yes
 # Render preview of content with changes (Rmd's and md's are checked)
@@ -16,9 +16,9 @@ docker-test: no
 ##### Renderings run upon merge to main branch #####
 # Rendering each platform's content
 render-bookdown: yes
-render-leanpub: no
-render-coursera: no
+render-leanpub: yes
+render-coursera: yes
 
 # What docker image should be used for rendering?
 # The default is jhudsl/course_template:main
-rendering-docker-image: 'jhudsl/course_template:main'
+rendering-docker-image: 'jhudsl/base_ottr:main'

@@ -11,6 +11,7 @@ on:
       - quizzes/*
       - resources/*
       - manuscript/*
+      - _bookdown.yml
 
 jobs:
 

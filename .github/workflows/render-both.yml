@@ -12,6 +12,7 @@ on:
       - resources/*
       - manuscript/*
       - _bookdown.yml
+      - Book.txt
 
 jobs:
 

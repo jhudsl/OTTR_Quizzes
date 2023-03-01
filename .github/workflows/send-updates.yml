@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
 
       - name: Login as jhudsl-robot
         run: |
@@ -30,11 +30,11 @@ jobs:
         run: |
           if [ github.event.inputs.prtag == 'null' ]
           then
-            echo ::set-output name=version::$(echo $GITHUB_REF | cut -d / -f 3)
+            echo "version=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_OUTPUT
           fi
           if [ github.event.inputs.prtag != 'null' ]
           then
-            echo ::set-output name=version::${{ github.event.inputs.prtag }}
+            echo "version=${{ github.event.inputs.prtag }}" >> $GITHUB_OUTPUT
           fi
 
       - name: Run Mechanics File Sync

@@ -9,6 +9,10 @@ group:
     jhudsl/Documentation_and_Usability_Quizzes
     broadinstitute/dsp-terra-mooc-intro_Quizzes
     jhudsl/Computing_for_Cancer_Informatics_Leanpub
+    fhdsl/Choosing_Genomics_Tools_Quizzes
+    fhdsl/Ethical_Data_Handling_for_Cancer_Research_Quizzes
+    fhdsl/Overleaf_and_LaTeX_for_Scientific_Articles_Quizzes
+    fhdsl/AI_for_software_Quizzes
 
 #ADD NEW REPO HERE following the format above#
   # Files which should be updated

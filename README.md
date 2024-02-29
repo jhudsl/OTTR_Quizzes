@@ -2,7 +2,7 @@
 
 This course was created from [this github template](https://github.com/jhudsl/OTTR_Quizzes).
 
-You can see the rendered course material here: {Link to the Leanpub rendered course. Will look something like: https://leanpub.com/jhu/{Course_Name}}
+You can see the rendered course material here: {Link to the Leanpub rendered course. }
 
 This repository is a companion repository to the an OTTR_Template repository.
 [Follow these instructions to set up this repository](https://www.ottrproject.org/examples.html#publishing-with-leanpub). 

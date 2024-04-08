@@ -35,6 +35,7 @@ jobs:
             .github/test-sync.yml \
             .github/workflows/starting-course.yml \
             .github/ISSUE_TEMPLATE/issue_template.md \
+            .github/PULL_REQUEST_TEMPLATE/add_to_sync_template.md \
             resources/chapt_screen_images/* \
             resources/code_output \
             resources/screenshots \

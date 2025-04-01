@@ -1,3 +1,6 @@
+:warning:**All OTTR related code and templates are moving to https://github.com/orgs/ottrproject/ as of April 2025:warning:**
+If you'd like to contribute to or use OTTR tools please go there! or visit [ottrproject.org](https://www.ottrproject.org/)
+
 # {Course Name}
 
 This course was created from [this github template](https://github.com/jhudsl/OTTR_Quizzes).
